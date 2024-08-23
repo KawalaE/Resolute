@@ -1,5 +1,6 @@
 "use client";
 import ErrorMessage from "@/app/components/ErrorMessage";
+import Spinner from "@/app/components/Spinner";
 import { postIssueSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button, Callout, TextField } from "@radix-ui/themes";
@@ -17,12 +18,15 @@ type NewIssueData = z.infer<typeof postIssueSchema>;
 const NewIssuePage = () => {
   const router = useRouter();
   const [error, setError] = useState(false);
+  const [isSubmitting, setSubmitting] = useState(false);
 
   const submitFormData = async (data: NewIssueData) => {
     try {
+      setSubmitting(true);
       await axios.post("/api/issues", data);
       router.push("/issues");
     } catch (error) {
+      setSubmitting(false);
       console.log(error);
       setError(true);
     }
@@ -65,7 +69,9 @@ const NewIssuePage = () => {
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
         </div>
 
-        <Button>Submit New Issue</Button>
+        <Button disabled={isSubmitting}>
+          Submit New Issue {isSubmitting && <Spinner />}
+        </Button>
       </form>
     </div>
   );
