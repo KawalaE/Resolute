@@ -1,5 +1,7 @@
 "use client";
-import { Button, Callout, TextField } from "@radix-ui/themes";
+import { postIssueSchema } from "@/app/schemas";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Button, Callout, Text, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -7,11 +9,9 @@ import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import SimpleMDE from "react-simplemde-editor";
+import { z } from "zod";
 
-interface NewIssueData {
-  title: string;
-  description: string;
-}
+type NewIssueData = z.infer<typeof postIssueSchema>;
 
 const NewIssuePage = () => {
   const router = useRouter();
@@ -27,7 +27,14 @@ const NewIssuePage = () => {
     }
   };
 
-  const { register, control, handleSubmit } = useForm<NewIssueData>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<NewIssueData>({
+    resolver: zodResolver(postIssueSchema),
+  });
   return (
     <div className="max-w-xl">
       {error && (
@@ -43,12 +50,28 @@ const NewIssuePage = () => {
         className=" space-y-5"
         onSubmit={handleSubmit((data) => submitFormData(data))}
       >
-        <TextField.Root placeholder="Title" {...register("title")} />
-        <Controller
-          control={control}
-          name="description"
-          render={({ field }) => <SimpleMDE {...field} />}
-        />
+        <div>
+          <TextField.Root placeholder="Title" {...register("title")} />
+          {errors.title && (
+            <Text color="red" as="p">
+              {errors.title.message}
+            </Text>
+          )}
+        </div>
+
+        <div>
+          <Controller
+            control={control}
+            name="description"
+            render={({ field }) => <SimpleMDE {...field} />}
+          />
+          {errors.description && (
+            <Text color="red" as="p">
+              {errors.description.message}
+            </Text>
+          )}
+        </div>
+
         <Button>Submit New Issue</Button>
       </form>
     </div>
