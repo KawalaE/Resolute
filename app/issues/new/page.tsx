@@ -27,7 +27,6 @@ const NewIssuePage = () => {
       router.push("/issues");
     } catch (error) {
       setSubmitting(false);
-      console.log(error);
       setError(true);
     }
   };
