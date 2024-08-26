@@ -12,12 +12,11 @@ import { Controller, useForm } from "react-hook-form";
 import { IoInformationCircleOutline } from "react-icons/io5";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
-
 type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
-
+  const statusOptions = ["OPEN", "IN_PROGRESS", "CLOSED"];
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
 
