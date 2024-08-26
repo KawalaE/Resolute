@@ -13,10 +13,6 @@ import { IoInformationCircleOutline } from "react-icons/io5";
 import SimpleMDE from "react-simplemde-editor";
 import { z } from "zod";
 
-// const SimpleMDE = dynamic(() => import("react-simplemde-editor"), {
-//   ssr: false,
-// });
-
 type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
@@ -77,7 +73,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
             control={control}
             name="description"
             render={({ field }) => (
-              <SimpleMDE placeholder="Description" {...field} />
+              <SimpleMDE placeholder="Description" {...field} ref={null} />
             )}
           />
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
