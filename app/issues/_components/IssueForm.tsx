@@ -16,7 +16,7 @@ type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
-  const statusOptions = ["OPEN", "IN_PROGRESS", "CLOSED"];
+  //const statusOptions = ["OPEN", "IN_PROGRESS", "CLOSED"];
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
 
