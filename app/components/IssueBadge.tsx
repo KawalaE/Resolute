@@ -1,7 +1,7 @@
 import { Status } from "@prisma/client";
 import { Badge } from "@radix-ui/themes";
 
-const badgeMap: Record<
+export const badgeMap: Record<
   Status,
   { label: String; color: "red" | "orange" | "green" }
 > = {
