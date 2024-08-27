@@ -5,6 +5,7 @@ import {
   Container,
   DropdownMenu,
   Flex,
+  Spinner,
   Text,
 } from "@radix-ui/themes";
 import classNames from "classnames";
@@ -27,7 +28,7 @@ const NavBar = () => {
 };
 const AuthStatus = () => {
   const { status, data: user } = useSession();
-  if (status === "loading") return null;
+  if (status === "loading") return <Spinner />;
   if (status === "unauthenticated")
     return (
       <Link
