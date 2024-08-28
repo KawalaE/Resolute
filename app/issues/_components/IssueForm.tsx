@@ -1,9 +1,10 @@
 "use client";
 import { ErrorMessage } from "@/app/components";
+import IssueBadge from "@/app/components/IssueBadge";
 import { IssueSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Issue } from "@prisma/client";
-import { Button, Callout, Spinner, TextField } from "@radix-ui/themes";
+import { Issue, Status } from "@prisma/client";
+import { Button, Callout, Select, Spinner, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -16,7 +17,7 @@ type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
-  //const statusOptions = ["OPEN", "IN_PROGRESS", "CLOSED"];
+  const statusOptions: Status[] = ["OPEN", "IN_PROGRESS", "CLOSED"];
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -65,19 +66,31 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           />
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
-        <div>
-          {/* <Select.Root>
-            <Select.Trigger placeholder="Status" />
-            <Select.Content>
-              <Select.Group>
-                <Select.Label>Suggestions</Select.Label>
-                <Select.Item value="1">
-                  <IssueBadge status={issue?.status} />
-                </Select.Item>
-              </Select.Group>
-            </Select.Content>
-          </Select.Root> */}
-        </div>
+        {issue && (
+          <div>
+            <Controller
+              defaultValue={issue?.status}
+              control={control}
+              name="status"
+              render={({ field: { onChange, value } }) => (
+                <Select.Root defaultValue={value} onValueChange={onChange}>
+                  <Select.Trigger placeholder="Status" />
+                  <Select.Content>
+                    <Select.Group>
+                      {statusOptions.map((status) => {
+                        return (
+                          <Select.Item key={status} value={status}>
+                            <IssueBadge status={status} />
+                          </Select.Item>
+                        );
+                      })}
+                    </Select.Group>
+                  </Select.Content>
+                </Select.Root>
+              )}
+            ></Controller>
+          </div>
+        )}
         <div>
           <Controller
             defaultValue={issue?.description}

@@ -8,11 +8,11 @@ export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
-  const session = await getServerSession(authOptions);
-  if (!session) {
-    //401 - unauthorized
-    return NextResponse.json({}, { status: 401 });
-  }
+  // const session = await getServerSession(authOptions);
+  // if (!session) {
+  //   //401 - unauthorized
+  //   return NextResponse.json({}, { status: 401 });
+  // }
   const body = await request.json();
   const validate = patchIssueSchema.safeParse(body);
 
@@ -46,6 +46,7 @@ export async function PATCH(
       title,
       description,
       assignedToUserId,
+      status: body.status ? body.status : "OPEN",
     },
   });
   return NextResponse.json(updatedIssue, { status: 201 });
