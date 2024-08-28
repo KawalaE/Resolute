@@ -42,7 +42,12 @@ const AuthStatus = () => {
     <Box>
       <DropdownMenu.Root>
         <DropdownMenu.Trigger className="cursor-pointer">
-          <Avatar src={user!.user?.image!} fallback={"?"} radius="full" />
+          <Avatar
+            src={user!.user?.image!}
+            fallback={"?"}
+            radius="full"
+            referrerPolicy="no-referrer"
+          />
         </DropdownMenu.Trigger>
         <DropdownMenu.Content>
           <DropdownMenu.Label>
