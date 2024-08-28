@@ -1,14 +1,25 @@
 import { IssueBadge } from "@/app/components";
 import Link from "@/app/components/Link";
 import prisma from "@/prisma/client";
+import { Status } from "@prisma/client";
 import { Table } from "@radix-ui/themes";
-import AddIssueButton from "../IssuesMenu";
+import IssuesMenu from "../IssuesMenu";
 
-const IssuesPage = async () => {
-  const issues = await prisma.issue.findMany();
+interface Props {
+  searchParams: { status: Status };
+}
+
+const IssuesPage = async ({ searchParams }: Props) => {
+  const availableStatuses = Object.values(Status);
+  const validatedStatus = availableStatuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+  const issues = await prisma.issue.findMany({
+    where: { status: validatedStatus },
+  });
   return (
     <div>
-      <AddIssueButton />
+      <IssuesMenu />
       <Table.Root variant="surface">
         <Table.Header>
           <Table.Row>

@@ -2,7 +2,7 @@ import { Button, Flex } from "@radix-ui/themes";
 import Link from "next/link";
 import IssuesFilter from "./IssuesFilter";
 
-const AddIssueButton = () => {
+const IssuesMenu = () => {
   return (
     <Flex className="mb-5" justify="between">
       <Link href="/issues/new">
@@ -13,4 +13,4 @@ const AddIssueButton = () => {
   );
 };
 
-export default AddIssueButton;
+export default IssuesMenu;
