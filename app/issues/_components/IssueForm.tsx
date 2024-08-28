@@ -65,7 +65,19 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           />
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
-
+        <div>
+          {/* <Select.Root>
+            <Select.Trigger placeholder="Status" />
+            <Select.Content>
+              <Select.Group>
+                <Select.Label>Suggestions</Select.Label>
+                <Select.Item value="1">
+                  <IssueBadge status={issue?.status} />
+                </Select.Item>
+              </Select.Group>
+            </Select.Content>
+          </Select.Root> */}
+        </div>
         <div>
           <Controller
             defaultValue={issue?.description}
