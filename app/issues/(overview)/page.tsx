@@ -13,13 +13,6 @@ interface Props {
 
 const IssuesPage = async ({ searchParams }: Props) => {
   const availableStatuses = Object.values(Status);
-  const validatedStatus = availableStatuses.includes(searchParams.status)
-    ? searchParams.status
-    : undefined;
-  const issues = await prisma.issue.findMany({
-    where: { status: validatedStatus },
-  });
-  //here fix here fix here
   const columnHeaders: {
     label: string;
     value: keyof Issue;
@@ -29,6 +22,20 @@ const IssuesPage = async ({ searchParams }: Props) => {
     { label: "Status", value: "status", className: "hidden md:table-cell" },
     { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
   ];
+  const validatedStatus = availableStatuses.includes(searchParams.status)
+    ? searchParams.status
+    : undefined;
+
+  const orderBy = columnHeaders
+    .map((columns) => columns.value)
+    .includes(searchParams.orderBy)
+    ? { [searchParams.orderBy]: "asc" }
+    : undefined;
+  const issues = await prisma.issue.findMany({
+    where: { status: validatedStatus },
+    orderBy: orderBy,
+  });
+
   return (
     <div>
       <IssuesMenu />
