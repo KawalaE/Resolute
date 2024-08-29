@@ -4,7 +4,7 @@ import IssuesFilter from "./IssuesFilter";
 
 const IssuesMenu = () => {
   return (
-    <Flex className="mb-5" justify="between">
+    <Flex justify="between">
       <Link href="/issues/new">
         <Button>New Issue</Button>
       </Link>
