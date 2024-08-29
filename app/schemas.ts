@@ -9,8 +9,8 @@ export const IssueSchema = z.object({
 });
 
 export const patchIssueSchema = z.object({
-  title: z.string().min(1).max(256),
-  description: z.string().max(65535).min(1),
+  title: z.string().min(1).max(256).optional(),
+  description: z.string().max(65535).min(1).optional(),
   status: z
     .union([z.literal("OPEN"), z.literal("IN_PROGRESS"), z.literal("CLOSED")])
     .optional(),

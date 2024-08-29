@@ -75,7 +75,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
               render={({ field: { onChange, value } }) => (
                 <Select.Root defaultValue={value} onValueChange={onChange}>
                   <Select.Trigger placeholder="Status" />
-                  <Select.Content>
+                  <Select.Content variant="soft">
                     <Select.Group>
                       {statusOptions.map((status) => {
                         return (
