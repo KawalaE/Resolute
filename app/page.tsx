@@ -1,9 +1,9 @@
-import NewestIssues from "./NewestIssues";
+import RecentIssues from "./RecentIssues";
 
 export default function Home() {
   return (
     <>
-      <NewestIssues />
+      <RecentIssues />
     </>
   );
 }

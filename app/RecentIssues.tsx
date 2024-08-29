@@ -2,7 +2,7 @@ import prisma from "@/prisma/client";
 import { Avatar, Card, Flex, Heading, Table } from "@radix-ui/themes";
 import { IssueBadge, Link } from "./components";
 
-const NewestIssues = async () => {
+const RecentIssues = async () => {
   const newIssues = await prisma.issue.findMany({
     orderBy: { createdAt: "desc" },
     take: 5,
@@ -14,7 +14,7 @@ const NewestIssues = async () => {
   return (
     <Card>
       <Heading m="2" mb="3">
-        Latest Issues
+        Recent Issues
       </Heading>
       <Table.Root>
         <Table.Body>
@@ -44,4 +44,4 @@ const NewestIssues = async () => {
   );
 };
 
-export default NewestIssues;
+export default RecentIssues;
