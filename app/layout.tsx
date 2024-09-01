@@ -7,6 +7,8 @@ import "./globals.css";
 import NavBar from "./NavBar";
 import ReactQueryClientProvider from "./ReactQueryClientProvider";
 import "./theme-config.css";
+import ThemeContextProvider from "./ThemeProvider";
+
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
@@ -23,18 +25,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
-        <ReactQueryClientProvider>
-          <AuthProvider>
-            <Theme accentColor="indigo" grayColor="gray">
-              <NavBar />
-              <main className="p-5">
-                <Container>{children}</Container>
-              </main>
-            </Theme>
-          </AuthProvider>
-        </ReactQueryClientProvider>
+        <ThemeContextProvider>
+          <ReactQueryClientProvider>
+            <AuthProvider>
+              <Theme accentColor="indigo" grayColor="gray">
+                <NavBar />
+                <main className="p-5">
+                  <Container>{children}</Container>
+                </main>
+              </Theme>
+            </AuthProvider>
+          </ReactQueryClientProvider>
+        </ThemeContextProvider>
       </body>
     </html>
   );

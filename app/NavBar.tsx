@@ -13,6 +13,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { GrBug } from "react-icons/gr";
+import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
   return (
@@ -20,7 +21,10 @@ const NavBar = () => {
       <Container>
         <Flex justify="between">
           <NavLinks />
-          <AuthStatus />
+          <Flex align="center" gap="5">
+            <ThemeSwitch />
+            <AuthStatus />
+          </Flex>
         </Flex>
       </Container>
     </nav>
