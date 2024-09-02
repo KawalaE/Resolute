@@ -1,4 +1,5 @@
 import prisma from "@/prisma/client";
+import { Flex } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 import { notFound } from "next/navigation";
 import IssueFormSkeleton from "./loading";
@@ -13,7 +14,11 @@ const EditPage = async ({ params }: { params: { id: string } }) => {
     where: { id: parseInt(params?.id) },
   });
   if (!issue) notFound();
-  return <IssueForm issue={issue} />;
+  return (
+    <Flex justify="center">
+      <IssueForm issue={issue} />
+    </Flex>
+  );
 };
 
 export default EditPage;

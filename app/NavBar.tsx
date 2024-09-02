@@ -18,7 +18,7 @@ import ThemeSwitch from "./ThemeSwitch";
 const NavBar = () => {
   const { resolvedTheme } = useTheme();
   return (
-    <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14">
+    <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14  dark:border-b-zinc-600">
       <Container>
         <Flex justify="between">
           <NavLinks />

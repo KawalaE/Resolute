@@ -1,3 +1,4 @@
+import { Flex } from "@radix-ui/themes";
 import dynamic from "next/dynamic";
 import IssueFormSkeleton from "./loading";
 
@@ -7,7 +8,11 @@ const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
 });
 
 const NewIssuePage = () => {
-  return <IssueForm />;
+  return (
+    <Flex justify="center">
+      <IssueForm />
+    </Flex>
+  );
 };
 
 export default NewIssuePage;
