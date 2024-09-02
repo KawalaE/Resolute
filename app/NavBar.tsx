@@ -8,14 +8,15 @@ import {
   Spinner,
   Text,
 } from "@radix-ui/themes";
-import classNames from "classnames";
 import { useSession } from "next-auth/react";
+import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GrBug } from "react-icons/gr";
+import { GoCodescanCheckmark } from "react-icons/go";
 import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
+  const { resolvedTheme } = useTheme();
   return (
     <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14">
       <Container>
@@ -34,14 +35,7 @@ const AuthStatus = () => {
   const { status, data: user } = useSession();
   if (status === "loading") return <Spinner />;
   if (status === "unauthenticated")
-    return (
-      <Link
-        className={classNames({ "nav-link": true })}
-        href="/api/auth/signin"
-      >
-        Login
-      </Link>
-    );
+    return <Link href="/api/auth/signin">Login</Link>;
   return (
     <Box>
       <DropdownMenu.Root>
@@ -77,19 +71,13 @@ const NavLinks = () => {
   return (
     <Flex gap="6" align="center">
       <Link href="/">
-        <GrBug />
+        <GoCodescanCheckmark size={25} />
       </Link>
       <ul className="flex space-x-6">
         {navElements.map((link) => {
           return (
             <li key={link.href}>
-              <Link
-                href={link.href}
-                className={classNames({
-                  "nav-link": true,
-                  "!text-zinc-900": link.href === currentPath,
-                })}
-              >
+              <Link className="nav-link dark:nav-link-dark" href={link.href}>
                 {link.label}
               </Link>
             </li>

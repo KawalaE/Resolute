@@ -1,3 +1,4 @@
+"use client";
 import { IssueBadge } from "@/app/components";
 import { Issue } from "@prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
@@ -11,7 +12,7 @@ const IssueDetail = ({ issue }: { issue: Issue }) => {
         <IssueBadge status={issue.status} />
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
-      <Card className="prose max-w-full">
+      <Card className="prose max-w-full dark:markdown-dark">
         <ReactMarkdown>{issue.description}</ReactMarkdown>
       </Card>
     </>
