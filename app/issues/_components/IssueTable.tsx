@@ -1,4 +1,5 @@
 import { IssueBadge, Link } from "@/app/components";
+import { PriorityBadge } from "@/app/components/PriorityBadge";
 import { Issue, Status } from "@prisma/client";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import { Flex, Table } from "@radix-ui/themes";
@@ -53,7 +54,7 @@ const IssueTable = ({ searchParams, issues }: Props) => {
               <IssueBadge status={issue.status} />
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
-              {issue.priority}
+              <PriorityBadge priority={issue.priority} />
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
               {issue.createdAt.toDateString()}
