@@ -3,11 +3,11 @@ import { Badge } from "@radix-ui/themes";
 
 export const badgeMap: Record<
   Status,
-  { label: String; color: "red" | "orange" | "green" }
+  { label: String; color: "blue" | "purple" | "gray" }
 > = {
-  OPEN: { label: "open", color: "red" },
-  IN_PROGRESS: { label: "in progress", color: "orange" },
-  CLOSED: { label: "closed", color: "green" },
+  OPEN: { label: "open", color: "blue" },
+  IN_PROGRESS: { label: "in progress", color: "purple" },
+  CLOSED: { label: "closed", color: "gray" },
 };
 const IssueBadge = ({ status }: { status: Status }) => {
   return <Badge color={badgeMap[status].color}>{badgeMap[status].label}</Badge>;
