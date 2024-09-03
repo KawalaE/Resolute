@@ -6,6 +6,9 @@ export const IssueSchema = z.object({
   status: z
     .union([z.literal("OPEN"), z.literal("IN_PROGRESS"), z.literal("CLOSED")])
     .optional(),
+  priority: z
+    .union([z.literal("LOW"), z.literal("MEDIUM"), z.literal("HIGH")])
+    .optional(),
 });
 
 export const patchIssueSchema = z.object({
@@ -13,6 +16,9 @@ export const patchIssueSchema = z.object({
   description: z.string().max(65535).min(1).optional(),
   status: z
     .union([z.literal("OPEN"), z.literal("IN_PROGRESS"), z.literal("CLOSED")])
+    .optional(),
+  priority: z
+    .union([z.literal("LOW"), z.literal("MEDIUM"), z.literal("HIGH")])
     .optional(),
   assignedToUserId: z
     .string()

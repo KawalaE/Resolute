@@ -53,6 +53,9 @@ const IssueTable = ({ searchParams, issues }: Props) => {
               <IssueBadge status={issue.status} />
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
+              {issue.priority}
+            </Table.Cell>
+            <Table.Cell className="hidden md:table-cell">
               {issue.createdAt.toDateString()}
             </Table.Cell>
           </Table.Row>
@@ -69,6 +72,7 @@ const columnHeaders: {
 }[] = [
   { label: "Title", value: "title" },
   { label: "Status", value: "status", className: "hidden md:table-cell" },
+  { label: "Priority", value: "priority" },
   { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
 ];
 

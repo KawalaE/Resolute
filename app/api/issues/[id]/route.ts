@@ -9,14 +9,13 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authOptions);
-  if (!session) {
-    //401 - unauthorized
-    return NextResponse.json({}, { status: 401 });
-  }
+  // if (!session) {
+  //   //401 - unauthorized
+  //   return NextResponse.json({}, { status: 401 });
+  // }
   const body = await request.json();
   const validate = patchIssueSchema.safeParse(body);
-  console.log(body);
-  console.log(validate);
+
   if (!validate.success) {
     return NextResponse.json(validate.error.format(), { status: 400 });
   }
@@ -48,6 +47,7 @@ export async function PATCH(
       description,
       assignedToUserId,
       status: body.status ? body.status : "OPEN",
+      priority: body.priority ? body.priority : "LOW",
     },
   });
   return NextResponse.json(updatedIssue, { status: 201 });
