@@ -6,8 +6,8 @@ export const priorityBadgeMap: Record<
   { label: String; color: "red" | "yellow" | "green" }
 > = {
   LOW: { label: "low", color: "red" },
-  MEDIUM: { label: "in progress", color: "yellow" },
-  HIGH: { label: "closed", color: "green" },
+  MEDIUM: { label: "medium", color: "yellow" },
+  HIGH: { label: "high", color: "green" },
 };
 export const PriorityBadge = ({ priority }: { priority: Priority }) => {
   return (
