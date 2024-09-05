@@ -1,11 +1,13 @@
 import { IssueBadge, Link } from "@/app/components";
 import { PriorityBadge } from "@/app/components/PriorityBadge";
-import { Issue, Status } from "@prisma/client";
+import { Issue, Priority, Status } from "@prisma/client";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import { Flex, Table } from "@radix-ui/themes";
+
 import NextLink from "next/link";
 
 export interface IssueQuery {
+  priority: Priority;
   status: Status;
   orderBy: keyof Issue;
   page: string;
