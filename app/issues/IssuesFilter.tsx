@@ -1,5 +1,6 @@
 "use client";
 import { Flex } from "@radix-ui/themes";
+import IssuesPerPageSelector from "./IssuesPerPageSelector";
 import IssuesSelector, { PrioritiesArr, StatusArr } from "./IssuesSelector";
 
 const statuses: StatusArr = [
@@ -18,6 +19,8 @@ const priorities: PrioritiesArr = [
 const IssuesFilter = () => {
   return (
     <Flex gap="5">
+      <IssuesPerPageSelector />
+
       <IssuesSelector
         selectBy="status"
         secondarySelector="priority"

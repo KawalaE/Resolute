@@ -11,6 +11,7 @@ export interface IssueQuery {
   status: Status;
   orderBy: keyof Issue;
   page: string;
+  count: string;
 }
 
 interface Props {
