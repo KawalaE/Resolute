@@ -21,13 +21,12 @@ const IssuesSelector = ({ selectBy, secondarySelector, options }: Props) => {
       onValueChange={(selected) => {
         const params = new URLSearchParams();
         if (selected) params.append(selectBy, selected);
-        if (searchParams.get("orderBy"))
-          params.append("orderBy", searchParams.get("orderBy")!);
-        if (searchParams.get(secondarySelector))
-          params.append(
-            secondarySelector,
-            searchParams.get(secondarySelector)!
-          );
+
+        ["orderBy", "count", secondarySelector].forEach((param) => {
+          const value = searchParams.get(param);
+          if (value) params.append(param, value);
+        });
+
         const query = params.size ? "?" + params.toString() : "";
         router.push("/issues" + query);
       }}

@@ -10,16 +10,11 @@ const IssuesPerPageSelector = () => {
       defaultValue={searchParams.get("count") || ""}
       onValueChange={(pageNumber) => {
         const params = new URLSearchParams();
-        if (pageNumber && searchParams.get("count"))
-          params.set("count", pageNumber);
-        if (pageNumber && !searchParams.get("count"))
-          params.append("count", pageNumber);
-        if (searchParams.get("priority"))
-          params.set("priority", searchParams.get("priority")!);
-        if (searchParams.get("status"))
-          params.set("status", searchParams.get("status")!);
-        if (searchParams.get("orderBy"))
-          params.append("orderBy", searchParams.get("orderBy")!);
+        if (pageNumber) params.set("count", pageNumber);
+        ["priority", "status", "orderBy"].forEach((param) => {
+          const value = searchParams.get(param);
+          if (value) params.set(param, value);
+        });
         const query = params.size ? "?" + params.toString() : "";
         router.push("/issues" + query);
       }}
