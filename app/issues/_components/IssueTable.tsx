@@ -12,6 +12,7 @@ export interface IssueQuery {
   orderBy: keyof Issue;
   page: string;
   count: string;
+  phrase: string;
 }
 
 interface Props {

@@ -12,7 +12,7 @@ interface Props {
 const IssuesPage = async ({ searchParams }: Props) => {
   const availableStatuses = Object.values(Status);
   const availablePriorities = Object.values(Priority);
-
+  const searchPhrase = searchParams.phrase || undefined;
   const validatedStatus = availableStatuses.includes(searchParams.status)
     ? searchParams.status
     : undefined;
@@ -30,7 +30,13 @@ const IssuesPage = async ({ searchParams }: Props) => {
     : undefined;
 
   const issues = await prisma.issue.findMany({
-    where: { status: validatedStatus, priority: validatePriorities },
+    where: {
+      title: {
+        contains: searchPhrase,
+      },
+      status: validatedStatus,
+      priority: validatePriorities,
+    },
     orderBy: orderBy,
     skip: (page - 1) * pageSize,
     take: pageSize,
