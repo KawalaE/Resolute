@@ -11,7 +11,7 @@ const IssuesPerPageSelector = () => {
       onValueChange={(pageNumber) => {
         const params = new URLSearchParams();
         if (pageNumber) params.set("count", pageNumber);
-        ["priority", "status", "orderBy"].forEach((param) => {
+        ["priority", "status", "orderBy", "phrase"].forEach((param) => {
           const value = searchParams.get(param);
           if (value) params.set(param, value);
         });

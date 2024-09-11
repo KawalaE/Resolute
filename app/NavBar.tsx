@@ -67,6 +67,7 @@ const NavLinks = () => {
   const navElements = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },
+    { label: "Statistics", href: "/stats" },
   ];
   return (
     <Flex gap="6" align="center">

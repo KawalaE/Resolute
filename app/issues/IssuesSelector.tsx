@@ -22,7 +22,7 @@ const IssuesSelector = ({ selectBy, secondarySelector, options }: Props) => {
         const params = new URLSearchParams();
         if (selected) params.append(selectBy, selected);
 
-        ["orderBy", "count", secondarySelector].forEach((param) => {
+        ["orderBy", "count", secondarySelector, "phrase"].forEach((param) => {
           const value = searchParams.get(param);
           if (value) params.append(param, value);
         });
