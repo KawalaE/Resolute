@@ -32,7 +32,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
   const issues = await prisma.issue.findMany({
     where: {
       title: {
-        contains: searchPhrase,
+        contains: searchPhrase || undefined,
       },
       status: validatedStatus,
       priority: validatePriorities,
@@ -42,7 +42,11 @@ const IssuesPage = async ({ searchParams }: Props) => {
     take: pageSize,
   });
   const issueCount = await prisma.issue.count({
-    where: { status: validatedStatus, priority: validatePriorities },
+    where: {
+      title: { contains: searchPhrase },
+      status: validatedStatus,
+      priority: validatePriorities,
+    },
   });
 
   return (
