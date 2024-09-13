@@ -1,10 +1,18 @@
 "use client";
 import { ErrorMessage } from "@/app/components";
 import IssueBadge from "@/app/components/IssueBadge";
+import { PriorityBadge } from "@/app/components/PriorityBadge";
 import { IssueSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Issue, Status } from "@prisma/client";
-import { Button, Callout, Select, Spinner, TextField } from "@radix-ui/themes";
+import { Issue, Priority, Status } from "@prisma/client";
+import {
+  Button,
+  Callout,
+  Flex,
+  Select,
+  Spinner,
+  TextField,
+} from "@radix-ui/themes";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
 import { useRouter } from "next/navigation";
@@ -17,7 +25,8 @@ type IssueFormData = z.infer<typeof IssueSchema>;
 
 const IssueForm = ({ issue }: { issue?: Issue }) => {
   const router = useRouter();
-  const statusOptions: Status[] = ["OPEN", "IN_PROGRESS", "CLOSED"];
+  const statusOptions = Object.values(Status);
+  const priorityOptions = Object.values(Priority);
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
 
@@ -67,7 +76,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
         {issue && (
-          <div>
+          <Flex gap="5">
             <Controller
               defaultValue={issue?.status}
               control={control}
@@ -89,7 +98,28 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
                 </Select.Root>
               )}
             ></Controller>
-          </div>
+            <Controller
+              defaultValue={issue?.priority}
+              control={control}
+              name="priority"
+              render={({ field: { onChange, value } }) => (
+                <Select.Root defaultValue={value} onValueChange={onChange}>
+                  <Select.Trigger placeholder="Priority" />
+                  <Select.Content variant="soft">
+                    <Select.Group>
+                      {priorityOptions.map((priority) => {
+                        return (
+                          <Select.Item key={priority} value={priority}>
+                            <PriorityBadge priority={priority} />
+                          </Select.Item>
+                        );
+                      })}
+                    </Select.Group>
+                  </Select.Content>
+                </Select.Root>
+              )}
+            ></Controller>
+          </Flex>
         )}
         <div>
           <Controller
