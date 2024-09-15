@@ -47,16 +47,16 @@ const page = async () => {
     },
   ];
   const priorityData = [
-    { name: "low", value: (await statsData()).lowPriority, fill: "#eb8e90" },
+    { name: "low", value: (await statsData()).lowPriority, fill: "#adddc0" },
     {
       name: "medium",
       value: (await statsData()).mediumPriority,
-      fill: "#adddc0",
+      fill: "#ffc182",
     },
     {
       name: "high",
       value: (await statsData()).highPriority,
-      fill: "#ffc182",
+      fill: "#eb8e90",
     },
   ];
   return (
