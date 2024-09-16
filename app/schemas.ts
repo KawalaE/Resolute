@@ -1,5 +1,9 @@
 import { z } from "zod";
 
+const commentSchema = z.object({
+  description: z.string(),
+});
+
 export const IssueSchema = z.object({
   title: z.string().min(1).max(256),
   description: z.string().max(65535).min(1),
@@ -26,4 +30,5 @@ export const patchIssueSchema = z.object({
     .max(255)
     .optional()
     .nullable(),
+  comment: commentSchema.optional(),
 });

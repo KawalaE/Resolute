@@ -12,17 +12,26 @@ datasource db {
 }
 
 model Issue {
-  id               Int      @id @default(autoincrement())
-  title            String   @db.VarChar(256)
-  description      String   @db.Text
-  status           Status   @default(OPEN)
-  priority         Priority @default(LOW)
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
-  assignedToUserId String?  @db.VarChar(256)
-  assignedToUser   User?    @relation(fields: [assignedToUserId], references: [id])
+  id               Int       @id @default(autoincrement())
+  title            String    @db.VarChar(256)
+  description      String
+  status           Status    @default(OPEN)
+  priority         Priority  @default(LOW)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  assignedToUserId String?   @db.VarChar(256)
+  assignedToUser   User?     @relation(fields: [assignedToUserId], references: [id])
+  comments         Comment[]
 
   @@fulltext([title])
+}
+
+model Comment {
+  id              Int      @id @default(autoincrement())
+  description     String   @db.Text
+  createdAt       DateTime @default(now())
+  assignToIssueId Int?
+  assignToIssue   Issue?   @relation(fields: [assignToIssueId], references: [id])
 }
 
 //enum - set of constant names

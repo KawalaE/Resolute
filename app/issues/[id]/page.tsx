@@ -4,6 +4,8 @@ import { Box, Flex, Grid } from "@radix-ui/themes";
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import AssigneeSelector from "./AssigneeSelector";
+import CommentIssue from "./CommentIssue";
+import Comments from "./Comments";
 import DeleteIssuse from "./DeleteIssuse";
 import EditButton from "./EditButton";
 import IssueDetail from "./IssueDetail";
@@ -31,7 +33,9 @@ const IssueDetailPage = async ({ params }: Props) => {
         {session && <AssigneeSelector issue={issue} />}
         <EditButton issueId={issue.id} />
         {session && <DeleteIssuse issueId={issue.id} />}
+        {session && <CommentIssue issueId={issue.id} />}
       </Flex>
+      <Comments issue={issue} />
     </Grid>
   );
 };

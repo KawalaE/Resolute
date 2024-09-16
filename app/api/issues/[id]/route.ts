@@ -37,8 +37,14 @@ export async function PATCH(
     if (!user)
       return NextResponse.json({ error: "Invalid user." }, { status: 400 });
   }
-
-  //update the issue
+  if (body.comment) {
+    await prisma.comment.create({
+      data: {
+        description: body.comment.description,
+        assignToIssueId: issue.id,
+      },
+    });
+  }
 
   const updatedIssue = await prisma.issue.update({
     where: { id: issue.id },
