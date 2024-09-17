@@ -12,7 +12,9 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
   const addComment = async () => {
     try {
       await axios.patch(`/api/issues/${issueId}`, {
-        comment: { description: commentContent, assignToIssueId: issueId },
+        comment: {
+          description: commentContent,
+        },
       });
       router.push(`/issues/${issueId}`);
       router.refresh();

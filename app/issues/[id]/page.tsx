@@ -35,7 +35,7 @@ const IssueDetailPage = async ({ params }: Props) => {
         {session && <DeleteIssuse issueId={issue.id} />}
         {session && <CommentIssue issueId={issue.id} />}
       </Flex>
-      <Comments issue={issue} />
+      <Comments issueId={issue.id} />
     </Grid>
   );
 };

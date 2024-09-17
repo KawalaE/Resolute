@@ -1,20 +1,11 @@
 "use client";
 import { Skeleton } from "@/app/components";
-import { Issue, User } from "@prisma/client";
+import { Issue } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
-import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
-
+import useUsers from "./useUsers";
 const AssigneeSelector = ({ issue }: { issue: Issue }) => {
-  const useUsers = () => {
-    return useQuery<User[]>({
-      queryKey: ["users"],
-      queryFn: () => axios.get("/api/users").then((res) => res.data),
-      staleTime: 24 * 60 * 60 * 1000, //24h
-      retry: 3,
-    });
-  };
   const assignUser = async (userId: string) => {
     try {
       await axios.patch(`/api/issues/${issue.id}`, {
@@ -25,9 +16,7 @@ const AssigneeSelector = ({ issue }: { issue: Issue }) => {
       toast.error("Changes could not be saved.");
     }
   };
-
   const { data: users, error, isLoading } = useUsers();
-
   if (error) return null;
   if (isLoading) return <Skeleton />;
 
