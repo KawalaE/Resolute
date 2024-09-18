@@ -2,8 +2,12 @@
 import { Comment, User } from "@prisma/client";
 import { Pencil1Icon } from "@radix-ui/react-icons";
 import { AlertDialog, Button, Flex, TextArea } from "@radix-ui/themes";
+import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 interface Props {
   author: User;
@@ -11,11 +15,26 @@ interface Props {
   updateComment: (comment: Comment, commentUpdate: string) => void;
 }
 
-const UpdateComment = ({ author, currentComment, updateComment }: Props) => {
+const UpdateComment = ({ author, currentComment }: Props) => {
   const { data: session } = useSession();
+  const router = useRouter();
+  const [error, setError] = useState(false);
+
   const [commentContent, setCommentContent] = useState(
     currentComment.description
   );
+  const updateComment = async (currentComment: Comment) => {
+    try {
+      await axios.patch(`/api/comments/${currentComment.id}`, {
+        description: commentContent,
+      });
+      router.refresh();
+      toast.success("Comment was updated");
+    } catch {
+      setError(true);
+      toast.error("An unexpected issue occured");
+    }
+  };
 
   return (
     <AlertDialog.Root>
@@ -45,7 +64,7 @@ const UpdateComment = ({ author, currentComment, updateComment }: Props) => {
             <Button
               variant="solid"
               color="green"
-              onClick={() => updateComment(currentComment, commentContent)}
+              onClick={() => updateComment(currentComment)}
             >
               Update a comment
             </Button>

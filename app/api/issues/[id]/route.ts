@@ -9,10 +9,10 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authOptions);
-  // if (!session) {
-  //   //401 - unauthorized
-  //   return NextResponse.json({}, { status: 401 });
-  // }
+  if (!session) {
+    //401 - unauthorized
+    return NextResponse.json({}, { status: 401 });
+  }
   const body = await request.json();
   const validate = patchIssueSchema.safeParse(body);
 
@@ -36,16 +36,6 @@ export async function PATCH(
     });
     if (!user)
       return NextResponse.json({ error: "Invalid user." }, { status: 400 });
-  }
-
-  if (body.comment) {
-    await prisma.comment.create({
-      data: {
-        description: body.comment.description,
-        assignToIssueId: issue.id,
-        assignedToUserId: session?.user.id,
-      },
-    });
   }
 
   const updatedIssue = await prisma.issue.update({

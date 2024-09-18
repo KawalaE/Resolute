@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-const commentSchema = z.object({
+export const commentSchema = z.object({
   description: z.string(),
 });
 

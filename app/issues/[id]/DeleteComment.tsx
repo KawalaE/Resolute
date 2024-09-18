@@ -1,16 +1,30 @@
 "use client";
 import { TrashIcon } from "@radix-ui/react-icons";
 import { AlertDialog, Button, Flex } from "@radix-ui/themes";
+import axios from "axios";
 import { User } from "next-auth";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 interface Props {
   author: User;
   currentComment: Comment;
-  deleteComment: (comment: Comment) => void;
 }
-const DeleteComment = ({ author, currentComment, deleteComment }: Props) => {
+
+const DeleteComment = ({ author, currentComment }: Props) => {
   const { data: session } = useSession();
+  const router = useRouter();
+  const [error, setError] = useState(false);
+  const deleteComment = async (currentComment: Comment) => {
+    try {
+      await axios.delete(`/api/comments/${currentComment.id}`);
+      router.refresh();
+    } catch {
+      setError(true);
+    }
+  };
+
   return (
     <AlertDialog.Root>
       <AlertDialog.Trigger>
