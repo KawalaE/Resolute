@@ -5,6 +5,7 @@ import { Select } from "@radix-ui/themes";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import useUsers from "./useUsers";
+
 const AssigneeSelector = ({ issue }: { issue: Issue }) => {
   const assignUser = async (userId: string) => {
     try {

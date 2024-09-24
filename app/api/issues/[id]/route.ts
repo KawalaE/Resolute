@@ -44,8 +44,8 @@ export async function PATCH(
       title,
       description,
       assignedToUserId,
-      status: body.status ? body.status : "OPEN",
-      priority: body.priority ? body.priority : "LOW",
+      status: body.status ? body.status : issue.status || "OPEN",
+      priority: body.priority ? body.priority : issue.priority || "LOW",
     },
   });
   return NextResponse.json(updatedIssue, { status: 201 });

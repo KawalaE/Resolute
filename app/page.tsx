@@ -1,3 +1,6 @@
-export default async function Home() {
-  return "Home";
+import Board from "./Board";
+
+function Home() {
+  return <Board />;
 }
+export default Home;

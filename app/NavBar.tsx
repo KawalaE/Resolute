@@ -37,8 +37,6 @@ const AuthStatus = () => {
   if (status === "loading") return <Spinner />;
   if (status === "unauthenticated")
     return <Link href="/api/auth/signin">Login</Link>;
-  console.log(user);
-  console.log(user?.user?.image);
   return (
     <Box>
       <DropdownMenu.Root>
