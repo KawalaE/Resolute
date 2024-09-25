@@ -12,7 +12,7 @@ import { useSession } from "next-auth/react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { GoCodescanCheckmark } from "react-icons/go";
+import { SlPaperClip } from "react-icons/sl";
 import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
@@ -73,7 +73,7 @@ const NavLinks = () => {
   return (
     <Flex gap="6" align="center">
       <Link href="/">
-        <GoCodescanCheckmark size={25} />
+        <SlPaperClip size={25} />
       </Link>
       <ul className="flex space-x-6">
         {navElements.map((link) => {
