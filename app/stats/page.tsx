@@ -22,6 +22,13 @@ export const statsData = async () => {
   const highPriority = await prisma.issue.count({
     where: { priority: "HIGH" },
   });
+  const assignedIssues = await prisma.issue.count({
+    where: { assignedToUserId: { not: null } },
+  });
+
+  const notAssignedIssues = await prisma.issue.count({
+    where: { assignedToUserId: null },
+  });
 
   return {
     openIssues,
@@ -30,6 +37,8 @@ export const statsData = async () => {
     lowPriority,
     mediumPriority,
     highPriority,
+    assignedIssues,
+    notAssignedIssues,
   };
 };
 
@@ -60,12 +69,40 @@ const page = async () => {
       fill: "#eb8e90",
     },
   ];
+  const assignedData = [
+    {
+      name: "assigned",
+      value: (await statsData()).assignedIssues,
+      fill: "#29b09b",
+    },
+    {
+      name: "not assigned",
+      value: (await statsData()).notAssignedIssues,
+      fill: "#ff7693ed",
+    },
+  ];
 
   return (
     <Grid columns={{ initial: "1", md: "2" }} gap="6">
-      <PieChartVisualization statsData={statusData} title={"Status"} />
+      <PieChartVisualization
+        statsData={statusData}
+        title={"Status"}
+        angleS={0}
+        angleE={360}
+      />
       <RecentIssues />
-      <PieChartVisualization statsData={priorityData} title={"Priority"} />
+      <PieChartVisualization
+        statsData={assignedData}
+        title={"Assigned issues"}
+        angleS={180}
+        angleE={0}
+      />
+      <PieChartVisualization
+        statsData={priorityData}
+        title={"Priority"}
+        angleS={0}
+        angleE={360}
+      />
     </Grid>
   );
 };

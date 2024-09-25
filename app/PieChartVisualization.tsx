@@ -3,17 +3,19 @@ import { Card, Heading } from "@radix-ui/themes";
 import { Legend, Pie, PieChart, ResponsiveContainer, Tooltip } from "recharts";
 
 interface statsInstance {
-  name: "string";
+  name: string;
   value: number;
-  fill: "string";
+  fill: string;
 }
 
 interface Props {
   statsData: statsInstance[];
-  title: "string";
+  title: string;
+  angleS: number;
+  angleE: number;
 }
 
-const PieChartVisualization = ({ statsData, title }: Props) => {
+const PieChartVisualization = ({ statsData, title, angleS, angleE }: Props) => {
   return (
     <Card>
       <Heading>{title}</Heading>
@@ -24,6 +26,8 @@ const PieChartVisualization = ({ statsData, title }: Props) => {
           <Pie
             data={statsData}
             dataKey="value"
+            startAngle={angleS}
+            endAngle={angleE}
             nameKey="name"
             cx="50%"
             cy="50%"
