@@ -49,9 +49,11 @@ const IssueTable = ({ searchParams, issues }: Props) => {
           <Table.Row key={issue.id}>
             <Table.Cell>
               <Link href={`issues/${issue.id}`} label={issue.title} />
-              <div className="block md:hidden">
-                {" "}
-                <IssueBadge status={issue.status} />
+              <div className="block md:hidden mt-1">
+                <Flex gap="3">
+                  <IssueBadge status={issue.status} />
+                  <PriorityBadge priority={issue.priority} />
+                </Flex>
               </div>
             </Table.Cell>
             <Table.Cell className="hidden md:table-cell">
@@ -77,7 +79,7 @@ const columnHeaders: {
 }[] = [
   { label: "Title", value: "title" },
   { label: "Status", value: "status", className: "hidden md:table-cell" },
-  { label: "Priority", value: "priority" },
+  { label: "Priority", value: "priority", className: "hidden md:table-cell" },
   { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
 ];
 
