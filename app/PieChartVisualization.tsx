@@ -13,7 +13,7 @@ interface Props {
   title: "string";
 }
 
-const Visualization = ({ statsData, title }: Props) => {
+const PieChartVisualization = ({ statsData, title }: Props) => {
   return (
     <Card>
       <Heading>{title}</Heading>
@@ -36,4 +36,4 @@ const Visualization = ({ statsData, title }: Props) => {
   );
 };
 
-export default Visualization;
+export default PieChartVisualization;

@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
-import { Flex } from "@radix-ui/themes";
-import Visualization from "../Visualization";
+import { Grid } from "@radix-ui/themes";
+import PieChartVisualization from "../PieChartVisualization";
+import RecentIssues from "../RecentIssues";
 
 export const statsData = async () => {
   const openIssues = await prisma.issue.count({
@@ -59,11 +60,13 @@ const page = async () => {
       fill: "#eb8e90",
     },
   ];
+
   return (
-    <Flex direction="column" gap="6">
-      <Visualization statsData={statusData} title={"Status"} />
-      <Visualization statsData={priorityData} title={"Priority"} />
-    </Flex>
+    <Grid columns={{ initial: "1", md: "2" }} gap="6">
+      <PieChartVisualization statsData={statusData} title={"Status"} />
+      <RecentIssues />
+      <PieChartVisualization statsData={priorityData} title={"Priority"} />
+    </Grid>
   );
 };
 
