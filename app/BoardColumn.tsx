@@ -1,8 +1,8 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import delay from "delay";
 import BoardTask from "./BoardTask";
-
 const BoardColumn = async ({
   title,
   column,
@@ -10,6 +10,7 @@ const BoardColumn = async ({
   title: string;
   column: Status;
 }) => {
+  await delay(2000);
   const issues = await prisma.issue.findMany({
     where: { status: column },
     include: {
