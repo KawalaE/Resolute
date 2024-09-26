@@ -2,6 +2,7 @@
 import { Flex } from "@radix-ui/themes";
 import IssuesPerPageSelector from "./IssuesPerPageSelector";
 import IssuesSelector, { PrioritiesArr, StatusArr } from "./IssuesSelector";
+import ResetFilters from "./ResetFilters";
 
 const statuses: StatusArr = [
   { label: "all" },
@@ -19,8 +20,8 @@ const priorities: PrioritiesArr = [
 const IssuesFilter = () => {
   return (
     <Flex gap="5">
+      <ResetFilters />
       <IssuesPerPageSelector />
-
       <IssuesSelector
         selectBy="status"
         secondarySelector="priority"

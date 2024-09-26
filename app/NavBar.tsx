@@ -9,14 +9,11 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { SlPaperClip } from "react-icons/sl";
 import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
-  const { resolvedTheme } = useTheme();
   return (
     <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14  dark:border-b-zinc-600">
       <Container>
@@ -63,8 +60,6 @@ const AuthStatus = () => {
   );
 };
 const NavLinks = () => {
-  const currentPath = usePathname();
-
   const navElements = [
     { label: "Dashboard", href: "/" },
     { label: "Issues", href: "/issues" },

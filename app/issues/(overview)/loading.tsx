@@ -8,12 +8,15 @@ const loading = () => {
   return (
     <div>
       <IssuesMenu />
-      <Table.Root variant="surface" className="max-w-xl">
+      <Table.Root variant="surface" mt="5">
         <Table.Header>
           <Table.Row>
             <Table.ColumnHeaderCell>Title</Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
               Status
+            </Table.ColumnHeaderCell>
+            <Table.ColumnHeaderCell className="hidden md:table-cell">
+              Priority
             </Table.ColumnHeaderCell>
             <Table.ColumnHeaderCell className="hidden md:table-cell">
               Created
@@ -28,6 +31,9 @@ const loading = () => {
                 <div className="block md:hidden">
                   <Skeleton />
                 </div>
+              </Table.Cell>
+              <Table.Cell className="hidden md:table-cell">
+                <Skeleton />
               </Table.Cell>
               <Table.Cell className="hidden md:table-cell">
                 <Skeleton />

@@ -12,7 +12,6 @@ const IssuesMenu = () => {
         </Link>
         <IssuesSearchBar />
       </Flex>
-
       <IssuesFilter />
     </Flex>
   );
