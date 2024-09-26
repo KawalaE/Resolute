@@ -4,12 +4,12 @@ import { Box, Flex, Grid } from "@radix-ui/themes";
 
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
-import AssigneeSelector from "./AssigneeSelector";
-import CommentIssue from "./CommentIssue";
-import Comments from "./Comments";
-import DeleteIssuse from "./DeleteIssuse";
-import EditButton from "./EditButton";
-import IssueDetail from "./IssueDetail";
+import AssigneeSelector from "../AssigneeSelector";
+import CommentIssue from "../CommentIssue";
+import Comments from "../Comments";
+import DeleteIssuse from "../DeleteIssuse";
+import EditButton from "../EditButton";
+import IssueDetail from "../IssueDetail";
 interface Props {
   params: { id: string };
 }

@@ -1,5 +1,5 @@
 "use client";
-import { Flex } from "@radix-ui/themes";
+import { Grid } from "@radix-ui/themes";
 import IssuesPerPageSelector from "./IssuesPerPageSelector";
 import IssuesSelector, { PrioritiesArr, StatusArr } from "./IssuesSelector";
 import ResetFilters from "./ResetFilters";
@@ -19,9 +19,9 @@ const priorities: PrioritiesArr = [
 
 const IssuesFilter = () => {
   return (
-    <Flex gap="5">
-      <ResetFilters />
+    <Grid columns={{ initial: "1", sm: "4" }} gap="2rem">
       <IssuesPerPageSelector />
+
       <IssuesSelector
         selectBy="status"
         secondarySelector="priority"
@@ -33,7 +33,8 @@ const IssuesFilter = () => {
         secondarySelector="status"
         options={priorities}
       />
-    </Flex>
+      <ResetFilters />
+    </Grid>
   );
 };
 
