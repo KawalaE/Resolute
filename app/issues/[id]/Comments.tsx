@@ -57,6 +57,3 @@ const Comments = async ({ issueId }: { issueId: number }) => {
 };
 
 export default Comments;
-function setError(arg0: boolean) {
-  throw new Error("Function not implemented.");
-}

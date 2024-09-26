@@ -27,6 +27,7 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
       setError(true);
       setIsSubmitting(false);
     }
+    setCommentContent("");
   };
   return (
     <>
@@ -43,6 +44,7 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
           <TextArea
             onChange={(e) => setCommentContent(e.target.value)}
             placeholder="Your comment..."
+            value={commentContent}
           ></TextArea>
 
           <Flex gap="3" mt="4" justify="end">
@@ -52,7 +54,12 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button variant="solid" color="green" onClick={addComment}>
+              <Button
+                variant="solid"
+                color="green"
+                onClick={addComment}
+                disabled={!commentContent.trim()}
+              >
                 Add a comment
               </Button>
             </AlertDialog.Action>
