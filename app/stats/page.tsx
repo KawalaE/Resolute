@@ -1,6 +1,5 @@
 import prisma from "@/prisma/client";
 import { Grid } from "@radix-ui/themes";
-import delay from "delay";
 import PieChartVisualization from "../PieChartVisualization";
 import RecentIssues from "../RecentIssues";
 
@@ -70,7 +69,7 @@ const page = async () => {
       fill: "#eb8e90",
     },
   ];
-  await delay(4000);
+
   const assignedData = [
     {
       name: "assigned",

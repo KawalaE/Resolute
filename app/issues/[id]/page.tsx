@@ -1,7 +1,7 @@
 import authOptions from "@/app/auth/AuthOptions";
 import prisma from "@/prisma/client";
 import { Box, Flex, Grid } from "@radix-ui/themes";
-import delay from "delay";
+
 import { getServerSession } from "next-auth";
 import { notFound } from "next/navigation";
 import AssigneeSelector from "./AssigneeSelector";
@@ -17,7 +17,7 @@ interface Props {
 const IssueDetailPage = async ({ params }: Props) => {
   if (isNaN(parseInt(params.id))) notFound();
   const session = await getServerSession(authOptions);
-  await delay(4000);
+
   const issue = await prisma.issue.findUnique({
     where: { id: parseInt(params.id) },
   });

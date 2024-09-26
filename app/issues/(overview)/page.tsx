@@ -2,7 +2,7 @@ import Pagination from "@/app/components/Pagination";
 import prisma from "@/prisma/client";
 import { Priority, Status } from "@prisma/client";
 import { Flex } from "@radix-ui/themes";
-import delay from "delay";
+
 import IssuesMenu from "../IssuesMenu";
 import IssueTable, { columnNames, IssueQuery } from "../_components/IssueTable";
 
@@ -42,7 +42,7 @@ const IssuesPage = async ({ searchParams }: Props) => {
     skip: (page - 1) * pageSize,
     take: pageSize,
   });
-  await delay(2000);
+
   const issueCount = await prisma.issue.count({
     where: {
       title: { contains: searchPhrase },

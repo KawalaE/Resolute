@@ -31,7 +31,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
 
   return (
     <Flex align="center" gap="2">
-      <Text>
+      <Text className="hidden sm:table-cell">
         Page {currentPage} of {totalPages}
       </Text>
       <Button
