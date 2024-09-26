@@ -9,8 +9,8 @@ import {
   Text,
 } from "@radix-ui/themes";
 import { useSession } from "next-auth/react";
+import Image from "next/image";
 import Link from "next/link";
-import { SlPaperClip } from "react-icons/sl";
 import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
@@ -68,7 +68,7 @@ const NavLinks = () => {
   return (
     <Flex gap="6" align="center">
       <Link href="/">
-        <SlPaperClip size={25} />
+        <Image src="/logo.png" alt="logo" width="35" height="35"></Image>
       </Link>
       <ul className="flex space-x-6">
         {navElements.map((link) => {
