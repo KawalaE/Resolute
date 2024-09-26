@@ -1,12 +1,12 @@
 import { Skeleton } from "@/app/components";
-import { Box } from "@radix-ui/themes";
 
 const IssueFormSkeleton = () => {
   return (
-    <Box className="max-w-xl">
-      <Skeleton />
+    <div className="max-w-xl">
+      <Skeleton height="1.5rem" className="mb-5" />
       <Skeleton height="20rem"></Skeleton>
-    </Box>
+      <Skeleton height="2rem" width="5rem" className="mt-10"></Skeleton>
+    </div>
   );
 };
 

@@ -1,20 +1,25 @@
+import authOptions from "@/app/auth/AuthOptions";
 import { Skeleton } from "@/app/components";
-import { Box, Card, Flex, Heading } from "@radix-ui/themes";
+import { Box, Card, Flex, Grid } from "@radix-ui/themes";
+import { getServerSession } from "next-auth";
 
-const IssueDetailLoadingPage = () => {
+const IssueDetailLoadingPage = async () => {
+  const session = await getServerSession(authOptions);
   return (
-    <Box className="max-w-xl">
-      <Heading>
-        <Skeleton />
-      </Heading>
-      <Flex gap="4" my="2">
-        <Skeleton width="4rem" />
-        <Skeleton width="5rem" />
+    <Grid columns={{ initial: "1", sm: "5" }} gap="2rem">
+      <Box className="md:col-span-4">
+        <Skeleton width="40%" count={2} />
+        <Card className="mt-5">
+          <Skeleton count={1} />
+        </Card>
+      </Box>
+      <Flex direction="column" gap="4">
+        {session && <Skeleton height={25} />}
+        <Skeleton height={30} />
+        {session && <Skeleton height={30} />}
+        {session && <Skeleton height={30} />}
       </Flex>
-      <Card className="prose">
-        <Skeleton count={3} />
-      </Card>
-    </Box>
+    </Grid>
   );
 };
 
