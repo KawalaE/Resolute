@@ -1,7 +1,8 @@
 import prisma from "@/prisma/client";
 import { Grid } from "@radix-ui/themes";
-import PieChartVisualization from "../PieChartVisualization";
-import RecentIssues from "../RecentIssues";
+import delay from "delay";
+import PieChartVisualization from "../../PieChartVisualization";
+import RecentIssues from "../../RecentIssues";
 
 export const statsData = async () => {
   const openIssues = await prisma.issue.count({
@@ -69,6 +70,7 @@ const page = async () => {
       fill: "#eb8e90",
     },
   ];
+  await delay(4000);
   const assignedData = [
     {
       name: "assigned",
