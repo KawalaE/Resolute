@@ -15,7 +15,7 @@ const IssueDetail = ({ issue }: { issue: Issue }) => {
         <PriorityBadge priority={issue.priority} />
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
-      <Card className="prose max-w-full">
+      <Card className="max-w-full">
         <MarkdownPreview
           source={issue.description}
           style={{ padding: 16, background: "#00000000" }}
