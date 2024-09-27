@@ -13,13 +13,15 @@ import {
   Spinner,
   TextField,
 } from "@radix-ui/themes";
+import MarkdownEditor from "@uiw/react-markdown-editor";
 import axios from "axios";
 import "easymde/dist/easymde.min.css";
+import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { IoInformationCircleOutline } from "react-icons/io5";
-import SimpleMDE from "react-simplemde-editor";
+
 import { z } from "zod";
 type IssueFormData = z.infer<typeof IssueSchema>;
 
@@ -29,7 +31,7 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const priorityOptions = Object.values(Priority);
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
-
+  const { resolvedTheme } = useTheme();
   const submitFormData = async (data: IssueFormData) => {
     try {
       setSubmitting(true);
@@ -123,13 +125,18 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           ></Controller>
         </Flex>
 
-        <div>
+        <div data-color-mode={resolvedTheme}>
           <Controller
             defaultValue={issue?.description}
             control={control}
             name="description"
             render={({ field }) => (
-              <SimpleMDE placeholder="Description" {...field} ref={null} />
+              // <SimpleMDE placeholder="Description"  />
+              <MarkdownEditor
+                height="300px"
+                placeholder={"Description"}
+                {...field}
+              />
             )}
           />
           <ErrorMessage>{errors.description?.message}</ErrorMessage>
