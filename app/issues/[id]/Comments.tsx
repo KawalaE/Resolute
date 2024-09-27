@@ -1,14 +1,17 @@
-import authOptions from "@/app/auth/AuthOptions";
 import prisma from "@/prisma/client";
-import { Avatar, Card, Flex, Heading, Text } from "@radix-ui/themes";
-import { getServerSession } from "next-auth";
+import {
+  Avatar,
+  Card,
+  Flex,
+  Heading,
+  ScrollArea,
+  Text,
+} from "@radix-ui/themes";
 
 import DeleteComment from "./DeleteComment";
 import UpdateComment from "./UpdateComment";
 
 const Comments = async ({ issueId }: { issueId: number }) => {
-  const session = await getServerSession(authOptions);
-
   const comments = await prisma.comment.findMany({
     where: { assignToIssueId: issueId },
   });
@@ -47,7 +50,13 @@ const Comments = async ({ issueId }: { issueId: number }) => {
                   <DeleteComment author={user} currentComment={comment} />
                 </Flex>
               </Flex>
-              <Text>{comment.description}</Text>
+              <ScrollArea
+                className="max-w-full"
+                scrollbars="vertical"
+                style={{ maxHeight: 120 }}
+              >
+                {comment.description}
+              </ScrollArea>
             </Flex>
           </Card>
         );
