@@ -27,18 +27,18 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.variable}>
-        <ThemeContextProvider>
-          <ReactQueryClientProvider>
-            <AuthProvider>
+        <ReactQueryClientProvider>
+          <AuthProvider>
+            <ThemeContextProvider>
               <Theme accentColor="indigo" grayColor="gray">
                 <NavBar />
                 <main className="p-5">
                   <Container>{children}</Container>
                 </main>
               </Theme>
-            </AuthProvider>
-          </ReactQueryClientProvider>
-        </ThemeContextProvider>
+            </ThemeContextProvider>
+          </AuthProvider>
+        </ReactQueryClientProvider>
       </body>
     </html>
   );
