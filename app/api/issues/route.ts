@@ -21,6 +21,7 @@ export async function POST(request: NextRequest) {
     data: {
       title: body.title,
       description: body.description,
+      priority: body.priority ? body.priority : "LOW",
     },
   });
   return NextResponse.json(newIssue, { status: 201 });

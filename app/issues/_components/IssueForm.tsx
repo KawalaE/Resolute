@@ -75,8 +75,9 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
           />
           <ErrorMessage>{errors.title?.message}</ErrorMessage>
         </div>
-        {issue && (
-          <Flex gap="5">
+
+        <Flex gap="5">
+          {issue && (
             <Controller
               defaultValue={issue?.status}
               control={control}
@@ -98,29 +99,30 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
                 </Select.Root>
               )}
             ></Controller>
-            <Controller
-              defaultValue={issue?.priority}
-              control={control}
-              name="priority"
-              render={({ field: { onChange, value } }) => (
-                <Select.Root defaultValue={value} onValueChange={onChange}>
-                  <Select.Trigger placeholder="Priority" />
-                  <Select.Content variant="soft">
-                    <Select.Group>
-                      {priorityOptions.map((priority) => {
-                        return (
-                          <Select.Item key={priority} value={priority}>
-                            <PriorityBadge priority={priority} />
-                          </Select.Item>
-                        );
-                      })}
-                    </Select.Group>
-                  </Select.Content>
-                </Select.Root>
-              )}
-            ></Controller>
-          </Flex>
-        )}
+          )}
+          <Controller
+            defaultValue={issue?.priority}
+            control={control}
+            name="priority"
+            render={({ field: { onChange, value } }) => (
+              <Select.Root defaultValue={value} onValueChange={onChange}>
+                <Select.Trigger placeholder="Priority" />
+                <Select.Content variant="soft">
+                  <Select.Group>
+                    {priorityOptions.map((priority) => {
+                      return (
+                        <Select.Item key={priority} value={priority}>
+                          <PriorityBadge priority={priority} />
+                        </Select.Item>
+                      );
+                    })}
+                  </Select.Group>
+                </Select.Content>
+              </Select.Root>
+            )}
+          ></Controller>
+        </Flex>
+
         <div>
           <Controller
             defaultValue={issue?.description}
