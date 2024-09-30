@@ -1,4 +1,5 @@
 "use client";
+import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import {
   Avatar,
   Box,
@@ -30,7 +31,6 @@ const NavBar = () => {
 };
 const AuthStatus = () => {
   const { status, data: user } = useSession();
-
   if (status === "loading") return <Spinner />;
   if (status === "unauthenticated")
     return <Link href="/api/auth/signin">Login</Link>;
@@ -70,18 +70,39 @@ const NavLinks = () => {
       <Link href="/">
         <Image src="/logo.png" alt="logo" width="35" height="35"></Image>
       </Link>
-      <ul className="flex space-x-6">
-        {navElements.map((link) => {
-          return (
-            <li key={link.href}>
-              <Link className="nav-link dark:nav-link-dark" href={link.href}>
-                {link.label}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="block md:hidden">
+        <DropdownMenu.Root>
+          <DropdownMenu.Trigger className="cursor-pointer">
+            <HamburgerMenuIcon width="25" height="25" />
+          </DropdownMenu.Trigger>
+          <DropdownMenu.Content variant="soft">
+            {navElements.map((link) => (
+              <DropdownMenu.Item key={link.label}>
+                <Link className="nav-link dark:nav-link-dark" href={link.href}>
+                  {link.label}
+                </Link>
+              </DropdownMenu.Item>
+            ))}
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+      </div>
+      <div className="hidden md:block">
+        <ul className="flex space-x-6">
+          {navElements.map((link) => {
+            return (
+              <li key={link.href}>
+                <Link className="nav-link dark:nav-link-dark" href={link.href}>
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </Flex>
   );
 };
 export default NavBar;
+{
+  /* */
+}
