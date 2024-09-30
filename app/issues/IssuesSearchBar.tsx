@@ -9,7 +9,7 @@ const IssuesSearchBar = () => {
   const searchParams = useSearchParams();
   const [phrase, setPhrase] = useState("");
 
-  const handler = (value) => {
+  const handler = (value: string) => {
     setPhrase(value);
     const params = new URLSearchParams();
 
@@ -26,7 +26,7 @@ const IssuesSearchBar = () => {
   return (
     <TextField.Root
       placeholder="Search the issues…"
-      defaultValue={phrase}
+      value={phrase}
       onChange={(e) => {
         handler(e.target.value);
       }}

@@ -13,6 +13,7 @@ export interface IssueQuery {
   page: string;
   count: string;
   phrase: string;
+  direction: string;
 }
 
 interface Props {
@@ -33,7 +34,10 @@ const IssueTable = ({ searchParams, issues }: Props) => {
               <Flex align="center" gap="1">
                 <NextLink
                   href={{
-                    query: { ...searchParams, orderBy: column.value },
+                    query: {
+                      ...searchParams,
+                      orderBy: column.value,
+                    },
                   }}
                 >
                   {column.label}
