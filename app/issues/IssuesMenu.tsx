@@ -8,6 +8,7 @@ import IssuesSearchBar from "./IssuesSearchBar";
 
 const IssuesMenu = () => {
   const [reset, setReset] = useState(false);
+
   return (
     <Grid columns={{ initial: "1", sm: "3" }} gap="2rem">
       <Grid columns={{ initial: "1", sm: "2" }} gap="2rem">
