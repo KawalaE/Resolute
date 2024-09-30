@@ -3,14 +3,16 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextField } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
+import { Reset } from "./ResetFilters";
 
-const IssuesSearchBar = () => {
+const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [phrase, setPhrase] = useState("");
 
   const handler = (value: string) => {
     setPhrase(value);
+    resetHandler(false);
     const params = new URLSearchParams();
 
     if (phrase) params.set("phrase", phrase);
@@ -26,7 +28,7 @@ const IssuesSearchBar = () => {
   return (
     <TextField.Root
       placeholder="Search the issues…"
-      value={phrase}
+      value={reset ? "" : phrase}
       onChange={(e) => {
         handler(e.target.value);
       }}

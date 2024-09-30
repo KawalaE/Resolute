@@ -1,9 +1,8 @@
 "use client";
 import { Grid } from "@radix-ui/themes";
-import { useState } from "react";
 import IssuesPerPageSelector from "./IssuesPerPageSelector";
 import IssuesSelector, { PrioritiesArr, StatusArr } from "./IssuesSelector";
-import ResetFilters from "./ResetFilters";
+import ResetFilters, { Reset } from "./ResetFilters";
 
 const statuses: StatusArr = [
   { label: "open", value: "OPEN" },
@@ -16,18 +15,17 @@ const priorities: PrioritiesArr = [
   { label: "high", value: "HIGH" },
 ];
 
-const IssuesFilter = () => {
-  const [reset, setReset] = useState(false);
+const IssuesFilter = ({ reset, resetHandler }: Reset) => {
   return (
     <Grid columns={{ initial: "1", sm: "4" }} gap="2rem">
-      <IssuesPerPageSelector reset={reset} resetHandler={setReset} />
+      <IssuesPerPageSelector reset={reset} resetHandler={resetHandler} />
 
       <IssuesSelector
         selectBy="status"
         secondarySelector="priority"
         options={statuses}
         reset={reset}
-        resetHandler={setReset}
+        resetHandler={resetHandler}
       />
 
       <IssuesSelector
@@ -35,9 +33,9 @@ const IssuesFilter = () => {
         secondarySelector="status"
         options={priorities}
         reset={reset}
-        resetHandler={setReset}
+        resetHandler={resetHandler}
       />
-      <ResetFilters reset={reset} resetHandler={setReset} />
+      <ResetFilters reset={reset} resetHandler={resetHandler} />
     </Grid>
   );
 };
