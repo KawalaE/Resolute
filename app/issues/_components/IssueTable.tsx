@@ -98,7 +98,11 @@ const columnHeaders: {
   className?: string;
 }[] = [
   { label: "Title", value: "title" },
-  { label: "Status", value: "status", className: "hidden md:table-cell" },
+  {
+    label: "Status",
+    value: "status",
+    className: "hidden md:table-cell",
+  },
   { label: "Priority", value: "priority", className: "hidden md:table-cell" },
   { label: "Created", value: "createdAt", className: "hidden md:table-cell" },
 ];
