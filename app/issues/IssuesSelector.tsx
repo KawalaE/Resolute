@@ -50,9 +50,9 @@ const IssuesSelector = ({
           <Text color="gray">all</Text>
         </Select.Item>
         {options.map((option) => (
-          <Select.Item key={option.label} value={option.value}>
+          <Select.Item key={option.label} value={option.value!}>
             {selectBy === "status" ? (
-              <IssueBadge status={option.value!} />
+              <IssueBadge status={option.value} />
             ) : (
               <PriorityBadge priority={option.value!} />
             )}

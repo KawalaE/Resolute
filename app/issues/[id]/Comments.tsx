@@ -27,23 +27,27 @@ const Comments = async ({ issueId }: { issueId: number }) => {
           <Card key={comment.id}>
             <Flex direction="column" gap="3">
               <Flex justify="between">
-                <Flex align="center" gap="2">
-                  <Avatar
-                    src={user!.image!}
-                    fallback={"?"}
-                    radius="full"
-                    referrerPolicy="no-referrer"
-                  ></Avatar>
-                  <Text>{user!.name}</Text>
-                  <Text color="gray">
-                    {comment.createdAt.toLocaleDateString()}
-                  </Text>
-                  <Text color="gray">
-                    {comment.createdAt.toLocaleTimeString("en-US", {
-                      hour: "numeric",
-                      minute: "numeric",
-                    })}
-                  </Text>
+                <Flex align="center" gap="2" wrap="wrap">
+                  <Flex gap="2" align="center">
+                    <Avatar
+                      src={user!.image!}
+                      fallback={"?"}
+                      radius="full"
+                      referrerPolicy="no-referrer"
+                    ></Avatar>
+                    <Text>{user!.name}</Text>
+                  </Flex>
+                  <Flex gap="2" align="center">
+                    <Text color="gray">
+                      {comment.createdAt.toLocaleDateString()}
+                    </Text>
+                    <Text color="gray">
+                      {comment.createdAt.toLocaleTimeString("en-US", {
+                        hour: "numeric",
+                        minute: "numeric",
+                      })}
+                    </Text>
+                  </Flex>
                 </Flex>
                 <Flex gap="2">
                   <UpdateComment author={user} currentComment={comment} />
