@@ -1,10 +1,11 @@
+"use client";
 import { IssueBadge, Link } from "@/app/components";
 import { PriorityBadge } from "@/app/components/PriorityBadge";
 import { Issue, Priority, Status } from "@prisma/client";
-import { ArrowDownIcon } from "@radix-ui/react-icons";
+import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
 import { Flex, Table } from "@radix-ui/themes";
-
-import NextLink from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export interface IssueQuery {
   priority: Priority;
@@ -14,6 +15,7 @@ export interface IssueQuery {
   count: string;
   phrase: string;
   direction: string;
+  sort: "asc" | "desc";
 }
 
 interface Props {
@@ -22,6 +24,9 @@ interface Props {
 }
 
 const IssueTable = ({ searchParams, issues }: Props) => {
+  const router = useRouter();
+  const [sortOrder, setSortOrder] = useState("asc");
+
   return (
     <Table.Root variant="surface">
       <Table.Header>
@@ -31,18 +36,29 @@ const IssueTable = ({ searchParams, issues }: Props) => {
               key={column.value}
               className={column.className}
             >
-              <Flex align="center" gap="1">
-                <NextLink
-                  href={{
-                    query: {
-                      ...searchParams,
-                      orderBy: column.value,
-                    },
+              <Flex align="center" gap="2">
+                <button
+                  onClick={() => {
+                    setSortOrder(sortOrder === "asc" ? "desc" : "asc");
+                    const { count, priority, status, phrase } = searchParams;
+                    const params = new URLSearchParams();
+
+                    const possibleParams = { count, priority, status, phrase };
+                    Object.entries(possibleParams).forEach(([key, value]) => {
+                      if (value) params.append(key, value);
+                    });
+
+                    params.append("orderBy", column.value);
+                    params.append("sort", sortOrder);
+
+                    const query = params.size ? "?" + params.toString() : "";
+                    router.push("/issues" + query);
                   }}
                 >
                   {column.label}
-                </NextLink>
-                {column.value === searchParams.orderBy && <ArrowDownIcon />}
+                </button>
+                {column.value === searchParams.orderBy &&
+                  (sortOrder === "asc" ? <ArrowDownIcon /> : <ArrowUpIcon />)}
               </Flex>
             </Table.ColumnHeaderCell>
           ))}

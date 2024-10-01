@@ -4,7 +4,7 @@ import { Priority, Status } from "@prisma/client";
 import { Flex } from "@radix-ui/themes";
 
 import IssuesMenu from "../IssuesMenu";
-import IssueTable, { columnNames, IssueQuery } from "../_components/IssueTable";
+import IssueTable, { IssueQuery } from "../_components/IssueTable";
 
 interface Props {
   searchParams: IssueQuery;
@@ -26,8 +26,10 @@ const IssuesPage = async ({ searchParams }: Props) => {
 
   const pageSize = parseInt(searchParams.count) || 10;
 
-  const orderBy = columnNames.includes(searchParams.orderBy)
-    ? { [searchParams.orderBy]: "asc" }
+  const orderBy = ["title", "status", "priority", "createdAt"].includes(
+    searchParams.orderBy
+  )
+    ? { [searchParams.orderBy]: searchParams.sort }
     : undefined;
 
   const issues = await prisma.issue.findMany({
