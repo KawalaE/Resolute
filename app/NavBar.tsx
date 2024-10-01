@@ -12,9 +12,14 @@ import {
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
+  const pathname = usePathname();
+  const specificRoute = "/auth/signin";
+  console.log(pathname.includes(specificRoute));
+  if (pathname.includes(specificRoute)) return;
   return (
     <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14  dark:border-b-zinc-600">
       <Container>
