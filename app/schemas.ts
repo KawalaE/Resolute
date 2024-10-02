@@ -1,21 +1,8 @@
-import sanitizeHtml from "sanitize-html";
 import { z } from "zod";
 
-export const markdownSchema = z
-  .string()
-  .max(65535)
-  .min(1)
-  .transform((markdown) => {
-    const sanitizeMarkdown = sanitizeHtml(markdown, {
-      allowedTags: sanitizeHtml.defaults.allowedTags,
-      allowedAttributes: sanitizeHtml.defaults.allowedAttributes,
-      disallowedTagsMode: "discard",
-    });
-    return sanitizeMarkdown;
-  });
-
+export const markdownSchema = z.string().max(65535).min(1).optional();
 export const commentSchema = z.object({
-  description: z.string().min(1).max(500),
+  description: z.string().min(1).max(500).optional(),
 });
 
 export const IssueSchema = z.object({

@@ -3,6 +3,7 @@ import {
   AlertDialog,
   Button,
   Flex,
+  Grid,
   Spinner,
   Text,
   TextArea,
@@ -37,50 +38,51 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
     setCommentContent("");
   };
   return (
-    <>
-      <AlertDialog.Root>
-        <AlertDialog.Trigger>
-          <Button color="gray" className="p-3" disabled={isSubmitting}>
-            Comment on an Issue
-            {isSubmitting && <Spinner />}
-          </Button>
-        </AlertDialog.Trigger>
-        <AlertDialog.Content>
-          <AlertDialog.Title>Comment on an Issue</AlertDialog.Title>
+    <AlertDialog.Root>
+      <AlertDialog.Trigger>
+        <Button color="gray" className="p-3" disabled={isSubmitting}>
+          Comment on an Issue
+          {isSubmitting && <Spinner />}
+        </Button>
+      </AlertDialog.Trigger>
+      <AlertDialog.Content>
+        <AlertDialog.Title>Comment on an Issue</AlertDialog.Title>
 
-          <TextArea
-            onChange={(e) => setCommentContent(e.target.value)}
-            placeholder="Your comment..."
-            value={commentContent}
-          ></TextArea>
+        <TextArea
+          onChange={(e) => setCommentContent(e.target.value)}
+          placeholder="Your comment..."
+          value={commentContent}
+        ></TextArea>
 
-          <Flex justify="between" align="end">
-            <Text size="3" color={currentChars > 0 ? "green" : "red"}>
-              Characters left: {currentChars > 0 ? currentChars : 0}
-            </Text>
-            <Flex gap="3" mt="4" justify="end">
-              <AlertDialog.Cancel>
-                <Button variant="soft" color="gray">
-                  Cancel
-                </Button>
-              </AlertDialog.Cancel>
-              <AlertDialog.Action>
-                <Button
-                  variant="solid"
-                  color="green"
-                  onClick={addComment}
-                  disabled={
-                    !commentContent.trim() || commentContent.length > 500
-                  }
-                >
-                  Add a comment
-                </Button>
-              </AlertDialog.Action>
-            </Flex>
-          </Flex>
-        </AlertDialog.Content>
-      </AlertDialog.Root>
-    </>
+        <Flex direction="column" className="mt-4">
+          <Grid
+            columns={{ initial: "1", sm: "3" }}
+            gap="4"
+            className="mb-4"
+            dir="rtl"
+          >
+            <AlertDialog.Action>
+              <Button
+                variant="solid"
+                color="green"
+                onClick={addComment}
+                disabled={!commentContent.trim() || commentContent.length > 500}
+              >
+                Add a comment
+              </Button>
+            </AlertDialog.Action>
+            <AlertDialog.Cancel>
+              <Button variant="soft" color="gray">
+                Cancel
+              </Button>
+            </AlertDialog.Cancel>
+          </Grid>
+          <Text size="3" color={currentChars > 0 ? "green" : "red"}>
+            Characters left: {currentChars > 0 ? currentChars : 0}
+          </Text>
+        </Flex>
+      </AlertDialog.Content>
+    </AlertDialog.Root>
   );
 };
 
