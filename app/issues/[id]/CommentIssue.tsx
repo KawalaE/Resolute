@@ -1,5 +1,12 @@
 "use client";
-import { AlertDialog, Button, Flex, Spinner, TextArea } from "@radix-ui/themes";
+import {
+  AlertDialog,
+  Button,
+  Flex,
+  Spinner,
+  Text,
+  TextArea,
+} from "@radix-ui/themes";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -11,7 +18,7 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
   const [commentContent, setCommentContent] = useState("");
   const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
+  let currentChars = 500 - commentContent.length;
   const addComment = async () => {
     try {
       setIsSubmitting(true);
@@ -47,22 +54,29 @@ const CommentIssue = ({ issueId }: { issueId: number }) => {
             value={commentContent}
           ></TextArea>
 
-          <Flex gap="3" mt="4" justify="end">
-            <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
-                Cancel
-              </Button>
-            </AlertDialog.Cancel>
-            <AlertDialog.Action>
-              <Button
-                variant="solid"
-                color="green"
-                onClick={addComment}
-                disabled={!commentContent.trim()}
-              >
-                Add a comment
-              </Button>
-            </AlertDialog.Action>
+          <Flex justify="between" align="end">
+            <Text size="3" color={currentChars > 0 ? "green" : "red"}>
+              Characters left: {currentChars > 0 ? currentChars : 0}
+            </Text>
+            <Flex gap="3" mt="4" justify="end">
+              <AlertDialog.Cancel>
+                <Button variant="soft" color="gray">
+                  Cancel
+                </Button>
+              </AlertDialog.Cancel>
+              <AlertDialog.Action>
+                <Button
+                  variant="solid"
+                  color="green"
+                  onClick={addComment}
+                  disabled={
+                    !commentContent.trim() || commentContent.length > 500
+                  }
+                >
+                  Add a comment
+                </Button>
+              </AlertDialog.Action>
+            </Flex>
           </Flex>
         </AlertDialog.Content>
       </AlertDialog.Root>

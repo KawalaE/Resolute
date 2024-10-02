@@ -45,3 +45,9 @@ const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
 };
 
 export default IssuesSearchBar;
+function sanitizeHtml(
+  comment: any,
+  arg1: { allowedTags: any; allowedAttributes: any; disallowedTagsMode: string }
+) {
+  throw new Error("Function not implemented.");
+}

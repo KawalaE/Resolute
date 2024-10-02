@@ -14,6 +14,7 @@ export async function POST(
     return NextResponse.json({}, { status: 401 });
   }
   const body = await request.json();
+
   const validate = commentSchema.safeParse(body);
 
   if (!validate.success) {
