@@ -18,6 +18,7 @@ const authOptions: NextAuthOptions = {
   ],
   pages: {
     signIn: "/auth/signin",
+    signOut: "/auth/signout",
   },
   callbacks: {
     session({ session, token }) {

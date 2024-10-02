@@ -1,13 +1,23 @@
 "use client";
-
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
-import { Box, Button, Card, Flex, Heading, Text } from "@radix-ui/themes";
+import {
+  Box,
+  Button,
+  Card,
+  Flex,
+  Heading,
+  Spinner,
+  Text,
+} from "@radix-ui/themes";
 import { signIn } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
 const page = () => {
+  const [loading, setLoading] = useState(false);
+
   return (
     <div className="h-[calc(100vh_-_40px)] flex justify-center items-center ">
       <Card>
@@ -21,25 +31,35 @@ const page = () => {
             </Flex>
             <Text>Login using one of below platforms:</Text>
             <Button
+              disabled={loading}
               variant="outline"
-              onClick={() => signIn("github")}
+              onClick={() => {
+                setLoading(true);
+                signIn("github", { callbackUrl: "/" });
+              }}
               size="4"
               color="indigo"
             >
               <Flex align="center" gap="2">
                 <span>Sign in with Github</span>
                 <GitHubLogoIcon />
+                {loading && <Spinner />}
               </Flex>
             </Button>
             <Button
+              disabled={loading}
               variant="outline"
-              onClick={() => signIn("google")}
+              onClick={() => {
+                setLoading(true);
+                signIn("google", { callbackUrl: "/" });
+              }}
               color="orange"
               size="4"
             >
               <Flex align="center" gap="2">
                 <span>Sign in with Google</span>
                 <FcGoogle />
+                {loading && <Spinner />}
               </Flex>
             </Button>
           </Flex>

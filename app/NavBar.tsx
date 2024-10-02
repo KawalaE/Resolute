@@ -17,9 +17,11 @@ import ThemeSwitch from "./ThemeSwitch";
 
 const NavBar = () => {
   const pathname = usePathname();
-  const specificRoute = "/auth/signin";
-  console.log(pathname.includes(specificRoute));
-  if (pathname.includes(specificRoute)) return;
+  const specificRoutes = ["/auth/signin", "/auth/signout"];
+
+  if (pathname.includes(specificRoutes[0])) return;
+  if (pathname.includes(specificRoutes[1])) return;
+
   return (
     <nav className="flex items-center space-x-6 border-b mb-5 px-5 h-14  dark:border-b-zinc-600">
       <Container>
