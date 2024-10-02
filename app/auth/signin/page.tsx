@@ -15,7 +15,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 
-const page = () => {
+const Page = () => {
   const [loading, setLoading] = useState(false);
 
   return (
@@ -69,4 +69,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
