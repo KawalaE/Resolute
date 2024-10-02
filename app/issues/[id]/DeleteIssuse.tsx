@@ -1,6 +1,6 @@
 "use client";
 import { TrashIcon } from "@radix-ui/react-icons";
-import { AlertDialog, Button, Flex, Spinner } from "@radix-ui/themes";
+import { AlertDialog, Button, Flex, Grid, Spinner } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -33,12 +33,12 @@ const DeleteIssuse = ({ issueId }: { issueId: number }) => {
         </AlertDialog.Trigger>
         <AlertDialog.Content>
           <AlertDialog.Title>Delete an Issue</AlertDialog.Title>
-          <AlertDialog.Description size="2">
+          <AlertDialog.Description size="2" className="mb-4">
             Are you sure? This action will permanently remove an issue and any
             data related to it.
           </AlertDialog.Description>
 
-          <Flex gap="3" mt="4" justify="end">
+          <Grid columns={{ initial: "1", sm: "3" }} dir="rtl" gap="4">
             <AlertDialog.Cancel>
               <Button variant="soft" color="gray">
                 Cancel
@@ -49,7 +49,7 @@ const DeleteIssuse = ({ issueId }: { issueId: number }) => {
                 Delete an issue
               </Button>
             </AlertDialog.Action>
-          </Flex>
+          </Grid>
         </AlertDialog.Content>
       </AlertDialog.Root>
 
