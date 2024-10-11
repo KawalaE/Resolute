@@ -1,4 +1,4 @@
-import { Link as RadixLink } from "@radix-ui/themes";
+import { Link as RadixLink, Text } from "@radix-ui/themes";
 import NextLink from "next/link";
 
 interface Props {
@@ -8,11 +8,13 @@ interface Props {
 
 const Link = ({ href, label }: Props) => {
   return (
-    <NextLink href={href} legacyBehavior>
-      <RadixLink color="gray" weight="medium">
-        {label}
-      </RadixLink>
-    </NextLink>
+    <Text className="cursor-pointer">
+      <NextLink href={href} legacyBehavior>
+        <RadixLink color="gray" weight="medium">
+          {label}
+        </RadixLink>
+      </NextLink>
+    </Text>
   );
 };
 
