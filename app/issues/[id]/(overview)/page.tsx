@@ -15,7 +15,7 @@ interface Props {
   params: { id: string };
 }
 
-const fetchIssue = cache((issueId: number) =>
+export const fetchIssue = cache((issueId: number) =>
   prisma.issue.findUnique({
     where: { id: issueId },
   })
