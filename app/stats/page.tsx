@@ -1,5 +1,6 @@
 import prisma from "@/prisma/client";
 import { Grid } from "@radix-ui/themes";
+import { Metadata } from "next";
 import PieChartVisualization from "../PieChartVisualization";
 import RecentIssues from "../RecentIssues";
 
@@ -106,6 +107,14 @@ const page = async () => {
       />
     </Grid>
   );
+};
+
+export const metadata: Metadata = {
+  title: "Resolute - Stats",
+  description: `View detailed statistics on issue status, priority, 
+  and assignment, along with a summary of the most recent issues.`,
+
+  //add open graph and twitter properties
 };
 
 export default page;

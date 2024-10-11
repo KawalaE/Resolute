@@ -3,6 +3,7 @@ import prisma from "@/prisma/client";
 import { Priority, Status } from "@prisma/client";
 import { Flex } from "@radix-ui/themes";
 
+import { Metadata } from "next";
 import IssuesMenu from "../IssuesMenu";
 import IssueTable, { IssueQuery } from "../_components/IssueTable";
 
@@ -67,4 +68,13 @@ const IssuesPage = async ({ searchParams }: Props) => {
     </Flex>
   );
 };
+
+export const metadata: Metadata = {
+  title: "Resolute - Issues",
+  description: `Browse all issues and easily filter by status, priority, 
+  or use the search bar for quick access.`,
+
+  //add open graph and twitter properties
+};
+
 export default IssuesPage;
