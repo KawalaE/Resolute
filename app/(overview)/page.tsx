@@ -1,5 +1,5 @@
 import { Metadata } from "next";
-import Board from "../Board";
+import Board from "../_components/Board";
 
 function Home() {
   return <Board />;

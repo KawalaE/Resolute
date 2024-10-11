@@ -9,10 +9,9 @@ import {
   ScrollArea,
   Text,
 } from "@radix-ui/themes";
-import Link from "./components/Link";
-import { PriorityBadge } from "./components/PriorityBadge";
-
-import MarkdownDisplay from "./issues/[id]/MarkdownDisplay";
+import Link from "../_utility_components/Link";
+import { PriorityBadge } from "../_utility_components/PriorityBadge";
+import MarkdownDisplay from "../issues/[id]/MarkdownDisplay";
 
 const BoardTask = ({ issue }: { issue: Issue }) => {
   return (

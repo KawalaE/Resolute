@@ -2,8 +2,8 @@ import { Priority, Status } from "@prisma/client";
 import { Select, Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { IssueBadge } from "../components";
-import { PriorityBadge } from "../components/PriorityBadge";
+import { IssueBadge } from "../../_utility_components";
+import { PriorityBadge } from "../../_utility_components/PriorityBadge";
 export type StatusArr = { label: string; value?: Status }[];
 export type PrioritiesArr = { label: string; value?: Priority }[];
 

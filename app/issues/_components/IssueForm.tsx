@@ -1,7 +1,7 @@
 "use client";
-import { ErrorMessage } from "@/app/components";
-import IssueBadge from "@/app/components/IssueBadge";
-import { PriorityBadge } from "@/app/components/PriorityBadge";
+import { ErrorMessage } from "@/app/_utility_components";
+import IssueBadge from "@/app/_utility_components/IssueBadge";
+import { PriorityBadge } from "@/app/_utility_components/PriorityBadge";
 import { IssueSchema } from "@/app/schemas";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Issue, Priority, Status } from "@prisma/client";
@@ -15,7 +15,6 @@ import {
 } from "@radix-ui/themes";
 import MarkdownEditor from "@uiw/react-markdown-editor";
 import axios from "axios";
-import "easymde/dist/easymde.min.css";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

@@ -1,5 +1,5 @@
 "use client";
-import { Skeleton } from "@/app/components";
+import { Skeleton } from "@/app/_utility_components";
 import { Issue } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import axios from "axios";

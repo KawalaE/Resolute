@@ -1,7 +1,8 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
-import BoardTask from "./BoardTask";
+import BoardTask from "../_components/BoardTask";
+
 const BoardColumn = async ({
   title,
   column,
@@ -27,9 +28,7 @@ const BoardColumn = async ({
         </Flex>
 
         {issues.map((issue) => {
-          return (
-            <BoardTask key={issue.id} issue={issue} column={column}></BoardTask>
-          );
+          return <BoardTask key={issue.id} issue={issue}></BoardTask>;
         })}
       </Flex>
     </Card>

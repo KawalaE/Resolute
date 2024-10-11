@@ -1,4 +1,4 @@
-import { Skeleton } from "@/app/components";
+import { Skeleton } from "@/app/_utility_components";
 
 const IssueFormSkeleton = () => {
   return (

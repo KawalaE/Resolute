@@ -1,6 +1,6 @@
 "use client";
-import { IssueBadge, Link } from "@/app/components";
-import { PriorityBadge } from "@/app/components/PriorityBadge";
+import { IssueBadge, Link } from "@/app/_utility_components";
+import { PriorityBadge } from "@/app/_utility_components/PriorityBadge";
 import { Issue, Priority, Status } from "@prisma/client";
 import { ArrowDownIcon, ArrowUpIcon } from "@radix-ui/react-icons";
 import { Flex, Table } from "@radix-ui/themes";

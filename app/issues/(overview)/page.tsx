@@ -1,10 +1,10 @@
-import Pagination from "@/app/components/Pagination";
+import Pagination from "@/app/_utility_components/Pagination";
 import prisma from "@/prisma/client";
 import { Priority, Status } from "@prisma/client";
 import { Flex } from "@radix-ui/themes";
 
 import { Metadata } from "next";
-import IssuesMenu from "../IssuesMenu";
+import IssuesMenu from "../_components/IssuesMenu";
 import IssueTable, { IssueQuery } from "../_components/IssueTable";
 
 interface Props {

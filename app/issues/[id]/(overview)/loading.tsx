@@ -1,5 +1,5 @@
+import { Skeleton } from "@/app/_utility_components";
 import authOptions from "@/app/auth/AuthOptions";
-import { Skeleton } from "@/app/components";
 import { Box, Card, Flex, Grid } from "@radix-ui/themes";
 import { getServerSession } from "next-auth";
 
