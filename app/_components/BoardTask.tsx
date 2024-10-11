@@ -11,7 +11,7 @@ import {
 } from "@radix-ui/themes";
 import Link from "../_utility_components/Link";
 import { PriorityBadge } from "../_utility_components/PriorityBadge";
-import MarkdownDisplay from "../issues/[id]/MarkdownDisplay";
+import MarkdownDisplay from "../issues/[id]/edit/MarkdownDisplay";
 
 const BoardTask = ({ issue }: { issue: Issue }) => {
   return (

@@ -2,7 +2,7 @@ import { IssueBadge } from "@/app/_utility_components";
 import { PriorityBadge } from "@/app/_utility_components/PriorityBadge";
 import { Issue } from "@prisma/client";
 import { Flex, Heading, ScrollArea, Text } from "@radix-ui/themes";
-import MarkdownDisplay from "./MarkdownDisplay";
+import MarkdownDisplay from "../edit/MarkdownDisplay";
 
 const IssueDetail = ({ issue }: { issue: Issue }) => {
   return (

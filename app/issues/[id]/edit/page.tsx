@@ -3,10 +3,13 @@ import { notFound } from "next/navigation";
 import { fetchIssue } from "../(overview)/page";
 import IssueFormSkeleton from "./loading";
 
-const IssueForm = dynamic(() => import("@/app/issues/_components/IssueForm"), {
-  ssr: false,
-  loading: () => <IssueFormSkeleton />,
-});
+const IssueForm = dynamic(
+  () => import("@/app/issues/[id]/_components/IssueForm"),
+  {
+    ssr: false,
+    loading: () => <IssueFormSkeleton />,
+  }
+);
 const EditPage = async ({ params }: { params: { id: string } }) => {
   const issue = await fetchIssue(parseInt(params.id));
   if (!issue) notFound();

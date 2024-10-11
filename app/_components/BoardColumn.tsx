@@ -1,6 +1,7 @@
 import prisma from "@/prisma/client";
 import { Status } from "@prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import React from "react";
 import BoardTask from "../_components/BoardTask";
 
 const BoardColumn = async ({
