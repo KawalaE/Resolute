@@ -1,8 +1,8 @@
 import prisma from "@/prisma/client";
 import { Grid } from "@radix-ui/themes";
 import { Metadata } from "next";
-import PieChartVisualization from "./_components/PieChartVisualization";
-import RecentIssues from "./_components/RecentIssues";
+import PieChartVisualization from "./PieChartVisualization";
+import RecentIssues from "./RecentIssues";
 
 export const statsData = async () => {
   const openIssues = await prisma.issue.count({

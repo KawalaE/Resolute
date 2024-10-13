@@ -15,7 +15,7 @@ export async function PATCH(
   }
   const body = await request.json();
   const validate = patchIssueSchema.safeParse(body);
-  console.log(validate.error?.errors);
+
   if (!validate.success) {
     return NextResponse.json(validate.error.format(), { status: 400 });
   }

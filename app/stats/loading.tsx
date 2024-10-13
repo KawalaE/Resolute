@@ -1,5 +1,5 @@
 import { Card, Grid, Heading, Spinner } from "@radix-ui/themes";
-import RecentIssuesSkeleton from "./_components/RecentIssuesSkeleton";
+import RecentIssuesSkeleton from "./RecentIssuesSkeleton";
 const loading = () => {
   return (
     <Grid columns={{ initial: "1", md: "2" }} gap="6">
