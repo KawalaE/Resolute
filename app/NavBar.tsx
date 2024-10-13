@@ -110,6 +110,3 @@ const NavLinks = () => {
   );
 };
 export default NavBar;
-{
-  /* */
-}
