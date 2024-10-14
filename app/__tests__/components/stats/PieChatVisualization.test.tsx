@@ -16,8 +16,7 @@ describe("PieChartVisualization", () => {
       fill: "#d19dff",
     },
   ];
-
-  it("should render a title of the chart", () => {
+  const renderComponent = () => {
     render(
       <PieChartVisualization
         statsData={mockStats}
@@ -26,6 +25,17 @@ describe("PieChartVisualization", () => {
         angleE={0}
       />
     );
+  };
+  it("should render a title of the chart", () => {
+    renderComponent();
+
     expect(screen.getByText(mockTitle)).toBeInTheDocument();
+  });
+  it("should render a legend", () => {
+    renderComponent();
+    mockStats.forEach(async (data) => {
+      const legend = await screen.findByText(data.name);
+      expect(legend).toBeInTheDocument();
+    });
   });
 });
