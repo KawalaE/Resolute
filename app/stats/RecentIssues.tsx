@@ -12,6 +12,7 @@ const RecentIssues = async () => {
       assignedToUser: true,
     },
   });
+
   return (
     <Card>
       <Heading m="2" mb="3">

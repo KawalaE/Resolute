@@ -2,6 +2,7 @@ import PieChartVisualization from "@/app/stats/PieChartVisualization";
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
+
 describe("PieChartVisualization", () => {
   const mockTitle = "Mock stats";
   const mockStats = [
