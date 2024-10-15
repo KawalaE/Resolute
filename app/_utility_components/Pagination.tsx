@@ -7,7 +7,6 @@ import {
 } from "@radix-ui/react-icons";
 import { Button, Flex, Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import React from "react";
 
 interface Props {
   itemCount: number;
@@ -17,7 +16,6 @@ interface Props {
 
 const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
   const searchParams = useSearchParams();
-  console.log(searchParams);
   const router = useRouter();
 
   const totalPages = Math.ceil(itemCount / pageSize);
