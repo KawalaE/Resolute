@@ -4,13 +4,16 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 
 describe("ResetFilters", () => {
-  it("should render a button component", () => {
+  const renderComponent = () => {
     render(<ResetFilters reset={false} resetHandler={() => {}} />);
+  };
+  it("should render a button component", () => {
+    renderComponent();
 
     expect(screen.getByRole("button")).toBeInTheDocument();
   });
   it("should have name idicating reset function", () => {
-    render(<ResetFilters reset={false} resetHandler={() => {}} />);
+    renderComponent();
 
     expect(screen.getByText(/reset/i)).toBeInTheDocument();
   });
