@@ -15,27 +15,27 @@ const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
     if (reset) setPhrase("");
   }, [reset]);
 
-  const handler = (value: string) => {
-    setPhrase(value);
-    resetHandler(false);
+  useEffect(() => {
     const params = new URLSearchParams();
     if (phrase) params.set("phrase", phrase);
-
     ["priority", "status", "orderBy", "count"].forEach((param) => {
       const value = searchParams.get(param);
       if (value) params.set(param, value);
     });
     const query = params.size ? "?" + params.toString() : "";
     router.push("/issues" + query);
+  }, [phrase]);
+
+  const handleChange = (event) => {
+    resetHandler(false);
+    setPhrase(event.target.value);
   };
 
   return (
     <TextField.Root
       placeholder="Search the issues…"
       value={phrase}
-      onChange={(e) => {
-        handler(e.target.value);
-      }}
+      onChange={handleChange}
     >
       <TextField.Slot>
         <MagnifyingGlassIcon height="16" width="16" />
@@ -45,9 +45,3 @@ const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
 };
 
 export default IssuesSearchBar;
-function sanitizeHtml(
-  comment: any,
-  arg1: { allowedTags: any; allowedAttributes: any; disallowedTagsMode: string }
-) {
-  throw new Error("Function not implemented.");
-}

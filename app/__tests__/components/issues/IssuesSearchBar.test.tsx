@@ -2,6 +2,7 @@ import IssuesSearchBar from "@/app/issues/_components/IssuesSearchBar";
 import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import mockRouter from "next-router-mock";
 import { describe, expect, it } from "vitest";
 
 describe("IssuesSearchBar", () => {
@@ -21,5 +22,16 @@ describe("IssuesSearchBar", () => {
     await user.type(inputField, value);
 
     expect(screen.getByDisplayValue(value)).toBeInTheDocument();
+  });
+  it("should add search parameter to url query", async () => {
+    mockRouter.push("/issues");
+    renderComponent();
+    const inputField = screen.getByPlaceholderText(/search/i);
+    const value = "Issue";
+
+    const user = userEvent.setup();
+    await user.type(inputField, value);
+
+    expect(mockRouter.asPath).toContain(`phrase=${value}`);
   });
 });

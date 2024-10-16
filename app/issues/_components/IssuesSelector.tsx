@@ -1,7 +1,7 @@
 import { Priority, Status } from "@prisma/client";
 import { Select, Text } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IssueBadge } from "../../_utility_components";
 import { PriorityBadge } from "../../_utility_components/PriorityBadge";
 export type StatusArr = { label: string; value?: Status }[];
@@ -25,6 +25,12 @@ const IssuesSelector = ({
   const router = useRouter();
   const searchParams = useSearchParams();
   const [initial, setInitial] = useState(false);
+
+  useEffect(() => {
+    router.push("/issues");
+    setInitial(true);
+    resetHandler(false);
+  }, [reset]);
 
   return (
     <Select.Root
