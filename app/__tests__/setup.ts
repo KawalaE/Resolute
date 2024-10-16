@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/vitest";
-import { vi } from "vitest";
+import { beforeAll, vi } from "vitest";
 
 global.ResizeObserver = require("resize-observer-polyfill");
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
@@ -19,6 +19,11 @@ Object.defineProperty(window, "matchMedia", {
     dispatchEvent: vi.fn(),
   })),
 });
+
+beforeAll(() => {
+  vi.mock("next/router", () => require("next-router-mock"));
+});
+
 vi.mock("next/navigation", async (importOriginal) => {
   const actual = await importOriginal<typeof import("next/navigation")>();
   const { useRouter } = await vi.importActual<

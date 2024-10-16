@@ -1,13 +1,6 @@
-import Pagination from "@/app/_utility_components/Pagination"; // Adjust this path based on your setup
+import Pagination from "@/app/_utility_components/Pagination";
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest"; // Vitest functions for testing
-// Mock the next/navigation functions
-vi.mock("next/navigation", () => ({
-  useRouter: () => ({
-    push: vi.fn(),
-  }),
-  useSearchParams: () => new URLSearchParams("?page=2"),
-}));
+import { describe, expect, it } from "vitest";
 
 describe("Pagination", () => {
   const renderComponent = (
