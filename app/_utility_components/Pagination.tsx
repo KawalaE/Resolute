@@ -34,6 +34,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
         Page {currentPage} of {totalPages}
       </Text>
       <Button
+        aria-label="double-left"
         variant="soft"
         disabled={currentPage === 1}
         onClick={() => {
@@ -43,6 +44,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
         <DoubleArrowLeftIcon />
       </Button>
       <Button
+        aria-label="left"
         variant="soft"
         disabled={currentPage === 1}
         onClick={() => onPageChange(currentPage - 1)}
@@ -50,6 +52,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
         <ArrowLeftIcon />
       </Button>
       <Button
+        aria-label="right"
         variant="soft"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(currentPage + 1)}
@@ -57,6 +60,7 @@ const Pagination = ({ itemCount, pageSize, currentPage }: Props) => {
         <ArrowRightIcon />
       </Button>
       <Button
+        aria-label="double-right"
         variant="soft"
         disabled={currentPage === totalPages}
         onClick={() => onPageChange(totalPages)}
