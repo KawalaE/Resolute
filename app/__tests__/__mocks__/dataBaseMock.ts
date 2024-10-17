@@ -10,7 +10,13 @@ export const data: Issue[] = [
     priority: "HIGH",
     createdAt: new Date("2023-03-02T00:00:00.000Z"),
     updatedAt: new Date("2024-09-27T09:48:46.740Z"),
-    assignedToUserId: null,
+    assignedToUserId: "abc",
+    assignedToUser: {
+      id: "abc",
+      name: "John Doe",
+      email: "johnDoe@gmail.com",
+      image: "john.png",
+    },
   },
   {
     id: 1,

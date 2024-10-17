@@ -51,6 +51,7 @@ const BoardTask = ({ issue }: { issue: Issue }) => {
         {issue.assignedToUserId && (
           <Box>
             <Avatar
+              alt="User Avatar"
               src={issue.assignedToUser.image}
               fallback={"?"}
               radius="full"
