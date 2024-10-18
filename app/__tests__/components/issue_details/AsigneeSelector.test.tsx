@@ -14,6 +14,7 @@ import { data } from "../../__mocks__/dataBaseMock";
 
 vi.mock("@/app/issues/[id]/_components/useUsers");
 vi.mock("axios");
+
 type UseUsersReturnType = UseQueryResult<User[], unknown>;
 type CustomWrapperProps = {
   children: ReactNode;

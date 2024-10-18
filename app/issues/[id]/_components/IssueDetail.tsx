@@ -10,7 +10,7 @@ const IssueDetail = ({ issue }: { issue: Issue }) => {
       <Heading>{issue.title}</Heading>
       <Flex gap="4" my="2" wrap="wrap">
         <IssueBadge status={issue.status} />
-        <PriorityBadge priority={issue.priority} />
+        <PriorityBadge aria-label="priority" priority={issue.priority} />
         <Text>{issue.createdAt.toDateString()}</Text>
       </Flex>
 

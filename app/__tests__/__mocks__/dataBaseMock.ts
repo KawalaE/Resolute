@@ -4,8 +4,7 @@ export const data: Issue[] = [
   {
     id: 0,
     title: "Issue1",
-    description:
-      "**Dashboard** experiences high latency when pulling real-time data",
+    description: "Issue1 description",
     status: "OPEN",
     priority: "HIGH",
     createdAt: new Date("2023-03-02T00:00:00.000Z"),
@@ -21,8 +20,7 @@ export const data: Issue[] = [
   {
     id: 1,
     title: "Issue 2",
-    description:
-      "Users are unexpectedly logged out after a few minutes of inactivity",
+    description: "Issue2 description",
     status: "CLOSED",
     priority: "LOW",
     createdAt: new Date("2023-03-01T00:00:00.000Z"),
