@@ -45,7 +45,12 @@ const DeleteIssuse = ({ issueId }: { issueId: number }) => {
               </Button>
             </AlertDialog.Cancel>
             <AlertDialog.Action>
-              <Button variant="solid" color="red" onClick={deleteIssue}>
+              <Button
+                aria-label="delete-btn"
+                variant="solid"
+                color="red"
+                onClick={deleteIssue}
+              >
                 Delete an issue
               </Button>
             </AlertDialog.Action>
