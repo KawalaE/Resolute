@@ -13,12 +13,12 @@ describe("BoardTask", () => {
 
   it("should render issue title", () => {
     renderComponent(data[0]);
-    screen.debug();
+
     expect(screen.getByText(data[0].title));
   });
   it("should render issue priority", () => {
     renderComponent(data[0]);
-    screen.debug();
+
     expect(screen.getByText(new RegExp(data[0].priority, "i")));
   });
   it("should render preview of the issue", async () => {
