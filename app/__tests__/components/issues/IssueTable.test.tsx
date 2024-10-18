@@ -27,7 +27,8 @@ describe("IssueTable", () => {
       expect(
         screen.getByText(new RegExp(issue.title, "i"))
       ).toBeInTheDocument();
-      expect(screen.getAllByText(new RegExp(issue.status, "i")).length).toBe(2);
+      const status = issue.status.replace(/_/g, " ");
+      expect(screen.getAllByText(new RegExp(status, "i")).length).toBe(2);
       expect(screen.getAllByText(new RegExp(issue.priority, "i")).length).toBe(
         2
       );

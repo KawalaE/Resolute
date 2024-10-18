@@ -24,9 +24,9 @@ describe("RecentIssues", () => {
       expect(
         screen.getByText(new RegExp(issue.title, "i"))
       ).toBeInTheDocument();
-      expect(
-        screen.getByText(new RegExp(issue.status, "i"))
-      ).toBeInTheDocument();
+      const status = issue.status.replace(/_/g, " ");
+      expect(screen.getByText(new RegExp(status, "i"))).toBeInTheDocument();
+
       expect(
         screen.getByText(new RegExp(issue.priority, "i"))
       ).toBeInTheDocument();

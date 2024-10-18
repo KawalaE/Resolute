@@ -29,4 +29,14 @@ export const data: Issue[] = [
     updatedAt: new Date("2024-09-24T11:30:27.022Z"),
     assignedToUserId: null,
   },
+  {
+    id: 2,
+    title: "Issue 3",
+    description: "Issue 3 description",
+    status: "IN_PROGRESS",
+    priority: "MEDIUM",
+    createdAt: new Date("2023-03-03T00:00:00.000Z"),
+    updatedAt: new Date("2024-09-20T11:30:27.022Z"),
+    assignedToUserId: null,
+  },
 ];
