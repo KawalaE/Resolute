@@ -21,7 +21,7 @@ describe("CommentIssue", () => {
 
     await user.click(commentBtn);
   };
-  const addComment = async (comment?: string) => {
+  const addComment = async (comment: string) => {
     await clickCommentBtn();
     const commentFiled = screen.getByPlaceholderText(/your comment/i);
     const user = userEvent.setup();
@@ -55,18 +55,15 @@ describe("CommentIssue", () => {
     expect(screen.getByPlaceholderText(/your comment/i)).toBeInTheDocument();
   });
   it("should enable add comment button after populating comment field", async () => {
-    await clickCommentBtn();
-    const commentFiled = screen.getByPlaceholderText(/your comment/i);
-    const commentValue = "comment description";
-    const charsLeft = charsLimit - commentValue.length;
-    const user = userEvent.setup();
-
-    await user.type(commentFiled, commentValue);
-
-    expect(screen.getByText(/add/i)).toBeEnabled();
-    expect(
-      screen.getByText(`Characters left: ${charsLeft}`)
-    ).toBeInTheDocument();
+    const comment = "comment description";
+    const charsLeft = charsLimit - comment.length;
+    await addComment(comment);
+    waitFor(() => {
+      expect(screen.getByText(/add/i)).toBeEnabled();
+      expect(
+        screen.getByText(`Characters left: ${charsLeft}`)
+      ).toBeInTheDocument();
+    });
   });
   it("should send an post request to the server upon adding non empty comment", async () => {
     const comment = "comment";
