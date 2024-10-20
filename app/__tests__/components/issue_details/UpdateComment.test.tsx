@@ -82,9 +82,7 @@ describe("UpdateComment", () => {
   });
   it("should send patch request on update", async () => {
     const update = "additional info";
-    screen.debug();
     await updateComment(update);
-    screen.debug();
     expect(axios.patch).toHaveBeenCalledWith(
       `/api/comments/${currentComment.id}`,
       {

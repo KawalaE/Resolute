@@ -31,6 +31,7 @@ const UpdateComment = ({ author, currentComment }: Props) => {
     currentComment.description
   );
   let currentChars = 500 - commentContent.length;
+  console.log(currentChars);
 
   const updateComment = async (currentComment: Comment) => {
     try {
@@ -76,14 +77,20 @@ const UpdateComment = ({ author, currentComment }: Props) => {
               <Button
                 variant="solid"
                 color="green"
-                disabled={currentChars <= 0}
+                disabled={currentChars >= 500}
                 onClick={() => updateComment(currentComment)}
               >
                 Update a comment
               </Button>
             </AlertDialog.Action>
             <AlertDialog.Cancel>
-              <Button variant="soft" color="gray">
+              <Button
+                variant="soft"
+                color="gray"
+                onClick={() => {
+                  setCommentContent(currentComment.description);
+                }}
+              >
                 Cancel
               </Button>
             </AlertDialog.Cancel>
