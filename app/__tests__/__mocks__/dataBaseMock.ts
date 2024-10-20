@@ -1,4 +1,4 @@
-import { Issue } from "@prisma/client";
+import { Comment, Issue, User } from "@prisma/client";
 
 export const data: Issue[] = [
   {
@@ -36,5 +36,24 @@ export const data: Issue[] = [
     createdAt: new Date("2023-03-03T00:00:00.000Z"),
     updatedAt: new Date("2024-09-20T11:30:27.022Z"),
     assignedToUserId: null,
+  },
+];
+export const comments: Comment[] = [
+  {
+    id: 3,
+    description: "Comment 0",
+    createdAt: new Date("2023-05-03T00:00:00.000Z"),
+    assignedToUserId: "1",
+    assignToIssueId: 0,
+  },
+];
+
+export const users: User[] = [
+  {
+    id: "1",
+    name: "John Doe",
+    image: "john-doe.jpg",
+    email: null,
+    emailVerified: null,
   },
 ];

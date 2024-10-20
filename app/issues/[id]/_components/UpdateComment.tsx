@@ -49,6 +49,7 @@ const UpdateComment = ({ author, currentComment }: Props) => {
     <AlertDialog.Root>
       <AlertDialog.Trigger>
         <Button
+          aria-label="update-btn"
           color="gray"
           className="p-1"
           variant="soft"
@@ -57,7 +58,7 @@ const UpdateComment = ({ author, currentComment }: Props) => {
           <Pencil1Icon />
         </Button>
       </AlertDialog.Trigger>
-      <AlertDialog.Content>
+      <AlertDialog.Content aria-describedby={undefined}>
         <AlertDialog.Title>Edit comment</AlertDialog.Title>
         <TextArea
           onChange={(e) => setCommentContent(e.target.value)}

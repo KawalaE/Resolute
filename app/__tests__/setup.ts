@@ -22,6 +22,7 @@ Object.defineProperty(window, "matchMedia", {
 
 beforeAll(() => {
   vi.mock("next/router", () => require("next-router-mock"));
+  vi.mock("axios");
 });
 
 vi.mock("next/navigation", async (importOriginal) => {
@@ -42,5 +43,13 @@ vi.mock("next/navigation", async (importOriginal) => {
     useRouter: vi.fn().mockImplementation(useRouter),
     usePathname,
     useSearchParams,
+  };
+});
+
+vi.mock("next-auth/react", async () => {
+  const originalModule = await vi.importActual<any>("next-auth/react");
+  return {
+    ...originalModule,
+    useSession: vi.fn(),
   };
 });

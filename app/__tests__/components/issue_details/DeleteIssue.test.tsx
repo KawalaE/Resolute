@@ -54,7 +54,7 @@ describe("DeleteIssue", () => {
     await user.click(deleteBtn);
 
     const deleteIssueBtn = screen.getByLabelText("delete-btn");
-    screen.debug();
+
     await user.click(deleteIssueBtn);
 
     expect(axios.delete).toHaveBeenCalledWith(`/api/issues/${0}`);

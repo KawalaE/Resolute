@@ -23,6 +23,7 @@ const Comments = async ({ issueId }: { issueId: number }) => {
         const user = await prisma.user.findUnique({
           where: { id: comment.assignedToUserId! },
         });
+
         return (
           <Card key={comment.id}>
             <Flex direction="column" gap="3">

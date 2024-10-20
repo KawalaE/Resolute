@@ -5,10 +5,6 @@ import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import { data } from "../../__mocks__/dataBaseMock";
 
-function escapeRegExp(string: string) {
-  return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 describe("IssueDetail", () => {
   const renderComponent = ({ issue }: { issue: Issue }) => {
     render(<IssueDetail issue={issue} />);
