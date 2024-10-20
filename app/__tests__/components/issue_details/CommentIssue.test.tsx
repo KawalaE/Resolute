@@ -1,10 +1,12 @@
 import CommentIssue from "@/app/issues/[id]/_components/CommentIssue";
 import "@testing-library/jest-dom/vitest";
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { describe, expect, it } from "vitest";
+import axios from "axios";
+import { describe, expect, it, vi } from "vitest";
 import { data } from "../../__mocks__/dataBaseMock";
 
+vi.mock("axios");
 describe("CommentIssue", () => {
   const charsLimit = 500;
   const renderComponent = () => {
@@ -18,6 +20,17 @@ describe("CommentIssue", () => {
     const user = userEvent.setup();
 
     await user.click(commentBtn);
+  };
+  const addComment = async (comment?: string) => {
+    await clickCommentBtn();
+    const commentFiled = screen.getByPlaceholderText(/your comment/i);
+    const user = userEvent.setup();
+
+    await user.type(commentFiled, comment);
+
+    const add = screen.getByText(/add/i);
+
+    await user.click(add);
   };
   it("should render comment button", () => {
     renderComponent();
@@ -54,5 +67,29 @@ describe("CommentIssue", () => {
     expect(
       screen.getByText(`Characters left: ${charsLeft}`)
     ).toBeInTheDocument();
+  });
+  it("should send an post request to the server upon adding non empty comment", async () => {
+    const comment = "comment";
+    await addComment(comment);
+    waitFor(() => {
+      expect(axios.patch).toHaveBeenCalledWith(
+        `/api/issues/${data[0].id}/comments`,
+        {
+          description: comment,
+        }
+      );
+    });
+  });
+  it("should not send an post request to the server upon adding empty comment", async () => {
+    const comment = " ";
+    await addComment(comment);
+    waitFor(() => {
+      expect(axios.patch).not.toHaveBeenCalledWith(
+        `/api/issues/${data[0].id}/comments`,
+        {
+          description: comment,
+        }
+      );
+    });
   });
 });
