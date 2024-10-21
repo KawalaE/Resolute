@@ -19,7 +19,6 @@ import toast from "react-hot-toast";
 interface Props {
   author: User;
   currentComment: Comment;
-  updateComment: (comment: Comment, commentUpdate: string) => void;
 }
 
 const UpdateComment = ({ author, currentComment }: Props) => {
@@ -31,7 +30,6 @@ const UpdateComment = ({ author, currentComment }: Props) => {
     currentComment.description
   );
   let currentChars = 500 - commentContent.length;
-  console.log(currentChars);
 
   const updateComment = async (currentComment: Comment) => {
     try {
@@ -59,9 +57,10 @@ const UpdateComment = ({ author, currentComment }: Props) => {
           <Pencil1Icon />
         </Button>
       </AlertDialog.Trigger>
-      <AlertDialog.Content aria-describedby={undefined}>
+      <AlertDialog.Content aria-describedby={"description"}>
         <AlertDialog.Title>Edit comment</AlertDialog.Title>
         <TextArea
+          id="description"
           onChange={(e) => setCommentContent(e.target.value)}
           value={commentContent}
         ></TextArea>

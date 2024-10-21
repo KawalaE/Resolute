@@ -4,26 +4,12 @@ import "@testing-library/jest-dom/vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import axios from "axios";
-import { useSession } from "next-auth/react";
-import { beforeEach, describe, expect, it, vi } from "vitest";
+import { describe, expect, it } from "vitest";
 import { comments, users } from "../../__mocks__/dataBaseMock";
 
 describe("UpdateComment", () => {
   const author: User = users[0];
   const currentComment: Comment = comments[0];
-
-  beforeEach(() => {
-    vi.mocked(useSession).mockReturnValue({
-      data: {
-        user: {
-          id: author.id,
-          name: author.name,
-        },
-      },
-      status: "authenticated", // or "loading" depending on your test case
-    });
-  });
-
   const renderComponent = () => {
     render(<UpdateComment author={author} currentComment={currentComment} />);
   };

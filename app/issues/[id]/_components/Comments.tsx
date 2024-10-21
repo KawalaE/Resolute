@@ -50,10 +50,12 @@ const Comments = async ({ issueId }: { issueId: number }) => {
                     </Text>
                   </Flex>
                 </Flex>
-                <Flex gap="2">
-                  <UpdateComment author={user} currentComment={comment} />
-                  <DeleteComment author={user} currentComment={comment} />
-                </Flex>
+                {user && (
+                  <Flex gap="2">
+                    <UpdateComment author={user} currentComment={comment} />
+                    <DeleteComment author={user} currentComment={comment} />
+                  </Flex>
+                )}
               </Flex>
               <ScrollArea
                 className="max-w-full"

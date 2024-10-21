@@ -1,5 +1,8 @@
 import "@testing-library/jest-dom/vitest";
-import { beforeAll, vi } from "vitest";
+import { User } from "next-auth";
+import { useSession } from "next-auth/react";
+import { beforeAll, beforeEach, vi } from "vitest";
+import { users } from "./__mocks__/dataBaseMock";
 
 global.ResizeObserver = require("resize-observer-polyfill");
 window.HTMLElement.prototype.scrollIntoView = vi.fn();
@@ -23,6 +26,21 @@ Object.defineProperty(window, "matchMedia", {
 beforeAll(() => {
   vi.mock("next/router", () => require("next-router-mock"));
   vi.mock("axios");
+});
+//session mock setup
+const author: User = users[0];
+beforeEach(() => {
+  vi.mocked(useSession).mockReturnValue({
+    data: {
+      user: {
+        id: author.id,
+        email: author.email!,
+      },
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
+    },
+    status: "authenticated", // or "loading" depending on your test case
+    update: vi.fn(),
+  });
 });
 
 vi.mock("next/navigation", async (importOriginal) => {

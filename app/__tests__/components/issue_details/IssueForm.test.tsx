@@ -45,7 +45,6 @@ describe("IssueForm - issue", () => {
   });
   it("should render a issue form submit button - update issue", () => {
     renderComponent();
-    screen.debug();
     expect(screen.getByText(/update/i)).toBeInTheDocument();
   });
 });
