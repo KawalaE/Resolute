@@ -31,13 +31,16 @@ const IssueForm = ({ issue }: { issue?: Issue }) => {
   const [error, setError] = useState(false);
   const [isSubmitting, setSubmitting] = useState(false);
   const { resolvedTheme } = useTheme();
+
   const submitFormData = async (data: IssueFormData) => {
     try {
       setSubmitting(true);
       if (issue) {
         await axios.patch(`/api/issues/${issue.id}`, data);
       } else await axios.post("/api/issues", data);
-      router.push("/issues");
+      if (issue) {
+        router.push(`/issues/${issue.id}`);
+      } else router.push("/issues");
       router.refresh();
     } catch (error) {
       setSubmitting(false);
