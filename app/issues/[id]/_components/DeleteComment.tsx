@@ -32,6 +32,7 @@ const DeleteComment = ({ author, currentComment }: Props) => {
           color="gray"
           className="p-1"
           variant="soft"
+          aria-label="delete-btn"
           disabled={author!.id !== session?.user?.id}
         >
           <TrashIcon />
