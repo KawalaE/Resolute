@@ -20,6 +20,28 @@ export async function POST(
   if (!validate.success) {
     return NextResponse.json(validate.error.errors, { status: 400 });
   }
+  const allCommentsCount = await prisma.comment.count();
+  if (allCommentsCount >= 200) {
+    return NextResponse.json(
+      "Max amamount of comments reached, must be less then 200",
+      {
+        status: 400,
+      }
+    );
+  }
+  const commentsPerUser = await prisma.comment.count({
+    where: {
+      assignedToUserId: session.user.id,
+    },
+  });
+  if (commentsPerUser >= 30) {
+    return NextResponse.json(
+      "Max amamount of comments reached, must be less then 20 per user",
+      {
+        status: 400,
+      }
+    );
+  }
 
   const newComment = await prisma.comment.create({
     data: {

@@ -17,6 +17,16 @@ export async function POST(request: NextRequest) {
     return NextResponse.json(validate.error.errors, { status: 400 });
   }
 
+  const allIssuesCount = await prisma.issue.count();
+  if (allIssuesCount >= 200) {
+    return NextResponse.json(
+      "Max amamount of issues reached, must be less then 200",
+      {
+        status: 400,
+      }
+    );
+  }
+
   const newIssue = await prisma.issue.create({
     data: {
       title: body.title,
