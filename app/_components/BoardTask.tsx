@@ -1,5 +1,4 @@
 "use client";
-import { Issue } from "@prisma/client";
 import {
   Avatar,
   Box,
@@ -12,8 +11,9 @@ import {
 import Link from "../_utility_components/Link";
 import { PriorityBadge } from "../_utility_components/PriorityBadge";
 import MarkdownDisplay from "../issues/[id]/edit/MarkdownDisplay";
+import { IssueWithAssignedUser } from "./BoardColumn";
 
-const BoardTask = ({ issue }: { issue: Issue }) => {
+const BoardTask = ({ issue }: { issue: IssueWithAssignedUser }) => {
   return (
     <Card>
       <Flex justify="between" align="center" gap="6">
@@ -52,7 +52,7 @@ const BoardTask = ({ issue }: { issue: Issue }) => {
           <Box>
             <Avatar
               alt="User Avatar"
-              src={issue.assignedToUser.image}
+              src={issue.assignedToUser!.image ?? undefined}
               fallback={"?"}
               radius="full"
               referrerPolicy="no-referrer"

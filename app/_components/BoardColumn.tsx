@@ -1,7 +1,11 @@
 import prisma from "@/prisma/client";
-import { Status } from "@prisma/client";
+import { Issue, Status, User } from "@prisma/client";
 import { Card, Flex, Heading, Text } from "@radix-ui/themes";
 import BoardTask from "../_components/BoardTask";
+
+export type IssueWithAssignedUser = Issue & {
+  assignedToUser: User | null;
+};
 
 const BoardColumn = async ({
   title,
@@ -10,7 +14,7 @@ const BoardColumn = async ({
   title: string;
   column: Status;
 }) => {
-  const issues = await prisma.issue.findMany({
+  const issues: IssueWithAssignedUser[] = await prisma.issue.findMany({
     where: { status: column },
     include: {
       assignedToUser: true,

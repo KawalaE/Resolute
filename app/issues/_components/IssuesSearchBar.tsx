@@ -2,7 +2,7 @@
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextField } from "@radix-ui/themes";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { Reset } from "./ResetFilters";
 
 const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
@@ -26,7 +26,7 @@ const IssuesSearchBar = ({ reset, resetHandler }: Reset) => {
     router.push("/issues" + query);
   }, [phrase]);
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     resetHandler(false);
     setPhrase(event.target.value);
   };
