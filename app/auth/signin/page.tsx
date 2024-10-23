@@ -17,9 +17,27 @@ import { FcGoogle } from "react-icons/fc";
 
 const Page = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const handleSignIn = async (provider: string) => {
+    setLoading(true);
+    try {
+      const response = await signIn(provider, {
+        callbackUrl: "/",
+        redirect: false,
+      });
+      if (response?.error) {
+        setError("Login failed. Try with a different account.");
+      }
+    } catch (error) {
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <div className="h-[calc(100vh_-_40px)] flex justify-center items-center ">
+    <div className="h-[calc(100vh_-_40px)] flex justify-center items-center">
       <Card>
         <Box className="p-5">
           <Flex direction="column" gap="5">
@@ -29,30 +47,26 @@ const Page = () => {
               </Link>
               <Heading>Resolute</Heading>
             </Flex>
-            <Text>Login using one of below platforms:</Text>
+            <Text>Login using one of the platforms below:</Text>
+            {error && <Text>{error}</Text>}
             <Button
               disabled={loading}
               variant="outline"
-              onClick={() => {
-                setLoading(true);
-                signIn("github", { callbackUrl: "/" });
-              }}
+              onClick={() => handleSignIn("github")}
               size="4"
               color="indigo"
             >
               <Flex align="center" gap="2">
-                <span>Sign in with Github</span>
+                <span>Sign in with GitHub</span>
                 <GitHubLogoIcon />
                 {loading && <Spinner />}
               </Flex>
             </Button>
+
             <Button
               disabled={loading}
               variant="outline"
-              onClick={() => {
-                setLoading(true);
-                signIn("google", { callbackUrl: "/" });
-              }}
+              onClick={() => handleSignIn("google")}
               color="orange"
               size="4"
             >
