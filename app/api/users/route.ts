@@ -1,7 +1,15 @@
 import prisma from "@/prisma/client";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
-export async function GET(request: NextRequest) {
-  const users = await prisma.user.findMany({ orderBy: { name: "asc" } });
-  return NextResponse.json(users);
+export async function GET() {
+  try {
+    const users = await prisma.user.findMany(); // Adjust if you have a different model name
+    return NextResponse.json(users);
+  } catch (error) {
+    console.error("Error fetching users:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch users" },
+      { status: 500 }
+    );
+  }
 }
