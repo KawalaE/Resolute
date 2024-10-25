@@ -13,9 +13,7 @@ export const metadata: Metadata = {
      and highlights priority levels for easy identification.`,
   openGraph: {
     title: "Resolute - Dashboard",
-    description: `Track and manage issues efficiently with a dynamic issue board 
-    that categorizes tasks by status, displays assigned team members,
-     and highlights priority levels for easy identification.`,
+    description: `Track and manage issues efficiently with a dynamic issue board.`,
     images: [
       {
         url: "/api/og",
