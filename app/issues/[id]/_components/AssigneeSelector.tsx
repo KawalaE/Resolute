@@ -1,12 +1,32 @@
 "use client";
 import { Skeleton } from "@/app/_utility_components";
-import { Issue } from "@prisma/client";
+import { Issue, User } from "@prisma/client";
 import { Select } from "@radix-ui/themes";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import useUsers from "./useUsers";
 
 const AssigneeSelector = ({ issue }: { issue: Issue }) => {
+  const [users, setUsers] = useState<User[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  // Fetch users on component mount
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get("/api/users");
+        setUsers(response.data);
+      } catch (error) {
+        console.error("Failed to fetch users:", error);
+        setError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
+
   const assignUser = async (userId: string) => {
     try {
       await axios.patch(`/api/issues/${issue.id}`, {
@@ -17,8 +37,8 @@ const AssigneeSelector = ({ issue }: { issue: Issue }) => {
       toast.error("Changes could not be saved.");
     }
   };
-  const { data: users, error, isLoading } = useUsers();
-  if (error) return null;
+
+  if (error) return <div>Error loading users</div>;
   if (isLoading) return <Skeleton />;
 
   return (
