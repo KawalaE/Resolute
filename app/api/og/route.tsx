@@ -16,10 +16,9 @@ export async function GET(request: Request) {
       ? searchParams.get("title")?.slice(0, 100)
       : "Resolute";
 
-    const imageData = await fetch(
-      new URL("http://localhost:3000/_next/image?url=%2Flogo.png&w=48&q=75"),
-      import.meta.url
-    ).then((res) => res.arrayBuffer());
+    const imageData = await fetch(new URL("/logo.png", request.url)).then(
+      (res) => res.arrayBuffer()
+    );
 
     return new ImageResponse(
       (
