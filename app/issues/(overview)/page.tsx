@@ -77,6 +77,18 @@ const IssuesPage = async ({ searchParams }: Props) => {
 export const metadata: Metadata = {
   title: "Resolute - Issues",
   description: `Browse all issues and easily filter by status, priority, or use the search bar for quick access.`,
+  openGraph: {
+    title: "Resolute - Issues",
+    description: `Browse all issues and easily filter by status, priority, or use the search bar for quick access.`,
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Resolute Issues Table",
+      },
+    ],
+  },
 };
 
 export default IssuesPage;

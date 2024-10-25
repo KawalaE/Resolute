@@ -74,8 +74,18 @@ export const metadata: Metadata = {
   title: "Resolute - Stats",
   description: `View detailed statistics on issue status, priority, 
   and assignment, along with a summary of the most recent issues.`,
-
-  //add open graph and twitter properties
+  openGraph: {
+    title: "Resolute - Stats",
+    description: `Detailed statistics and summaries on issues.`,
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+        alt: "Resolute Issue Tracker Statistics",
+      },
+    ],
+  },
 };
 
 export default page;

@@ -52,6 +52,18 @@ export async function generateMetadata({ params }: Props) {
   return {
     title: issue?.title,
     description: `Details of issue: ${issue?.title}`,
+    openGraph: {
+      title: issue?.title,
+      description: `Details of issue: ${issue?.title}`,
+      images: [
+        {
+          url: "/api/og",
+          width: 1200,
+          height: 630,
+          alt: "Resolute Issue Details",
+        },
+      ],
+    },
   };
 }
 export default IssueDetailPage;

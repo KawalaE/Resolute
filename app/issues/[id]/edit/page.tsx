@@ -20,6 +20,18 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   return {
     title: `Edit ${issue?.title}`,
     description: `Edit ${issue?.title}`,
+    openGraph: {
+      title: `Edit ${issue?.title}`,
+      description: `Edit ${issue?.title}`,
+      images: [
+        {
+          url: "/api/og",
+          width: 1200,
+          height: 630,
+          alt: "Resolute Issue Edit Issue",
+        },
+      ],
+    },
   };
 }
 export default EditPage;
