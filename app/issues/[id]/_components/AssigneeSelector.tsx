@@ -11,7 +11,6 @@ const AssigneeSelector = ({ issue }: { issue: Issue }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // Fetch users on component mount
   useEffect(() => {
     const fetchUsers = async () => {
       try {
