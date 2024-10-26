@@ -1,6 +1,6 @@
 import { Grid } from "@radix-ui/themes";
-import React from "react";
 import BoardColumn from "./BoardColumn";
+export const dynamic = "force-dynamic";
 
 const Board = () => {
   return (
