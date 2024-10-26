@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import PieChartVisualization from "./PieChartVisualization";
 import RecentIssues from "./RecentIssues";
 import StatsData from "./StatsData";
+export const dynamic = "force-dynamic";
 
 const page = async () => {
   const statusData = [

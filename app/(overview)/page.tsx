@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import Board from "../_components/Board";
-
+export const dynamic = "force-dynamic";
 function Home() {
   return <Board />;
 }
