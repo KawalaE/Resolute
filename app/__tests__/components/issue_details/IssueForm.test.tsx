@@ -11,9 +11,6 @@ vi.mock("@uiw/react-markdown-editor", () => ({
   default: () => <div data-testid="markdown-editor" />,
 }));
 
-//in e2e test we will have more comprenehsive tests
-// to account for the markdown-edition issue
-
 describe("IssueForm - no issue", () => {
   const renderComponent = () => {
     render(<IssueForm />, { wrapper: Theme });
