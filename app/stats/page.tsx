@@ -6,29 +6,31 @@ import StatsData from "./StatsData";
 export const dynamic = "force-dynamic";
 
 const page = async () => {
+  const stats = await StatsData();
   const statusData = [
-    { name: "open", value: (await StatsData()).openIssues, fill: "#70b8ff" },
+    { name: "open", value: stats.openIssues, fill: "#70b8ff" },
     {
       name: "closed",
-      value: (await StatsData()).closedIssues,
+      value: stats.closedIssues,
       fill: "#646464",
     },
     {
       name: "in progress",
-      value: (await StatsData()).inProgressIssues,
+      value: stats.inProgressIssues,
       fill: "#d19dff",
     },
   ];
+
   const priorityData = [
-    { name: "low", value: (await StatsData()).lowPriority, fill: "#adddc0" },
+    { name: "low", value: stats.lowPriority, fill: "#adddc0" },
     {
       name: "medium",
-      value: (await StatsData()).mediumPriority,
+      value: stats.mediumPriority,
       fill: "#ffc182",
     },
     {
       name: "high",
-      value: (await StatsData()).highPriority,
+      value: stats.highPriority,
       fill: "#eb8e90",
     },
   ];
@@ -36,12 +38,12 @@ const page = async () => {
   const assignedData = [
     {
       name: "assigned",
-      value: (await StatsData()).assignedIssues,
+      value: stats.assignedIssues,
       fill: "#29b09b",
     },
     {
       name: "not assigned",
-      value: (await StatsData()).notAssignedIssues,
+      value: stats.notAssignedIssues,
       fill: "#ff7693ed",
     },
   ];
