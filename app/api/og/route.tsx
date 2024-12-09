@@ -16,7 +16,7 @@ export async function GET(request: Request) {
       ? searchParams.get("title")?.slice(0, 100)
       : "Resolute";
 
-    const imageData = await fetch(new URL("/logo.png", request.url)).then(
+    const imageData = await fetch(new URL("/favicon.ico", request.url)).then(
       (res) => res.arrayBuffer()
     );
 

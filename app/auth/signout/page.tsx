@@ -22,7 +22,7 @@ const Page = () => {
           <Flex direction="column" gap="5">
             <Flex align="center" gap="4">
               <Link href="/">
-                <Image src="/logo.png" alt="logo" width="50" height="50" />
+                <Image src="/favicon.ico" alt="logo" width="50" height="50" />
               </Link>
               <Heading>Resolute</Heading>
             </Flex>

@@ -75,7 +75,7 @@ const NavLinks = () => {
   return (
     <Flex gap="6" align="center">
       <Link href="/">
-        <Image src="/logo.png" alt="logo" width="35" height="35"></Image>
+        <Image src="/favicon.ico" alt="logo" width="35" height="35"></Image>
       </Link>
       <div className="block md:hidden">
         <DropdownMenu.Root>
