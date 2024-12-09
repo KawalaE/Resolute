@@ -28,32 +28,29 @@ const IssuesPage = async ({ searchParams }: Props) => {
     const page = parseInt(searchParams.page) || 1;
     const pageSize = parseInt(searchParams.count) || 10;
 
-    const orderBy = ["title", "status", "priority", "createdAt"].includes(
+    const orderByClause = ["title", "status", "priority", "createdAt"].includes(
       searchParams.orderBy
     )
       ? { [searchParams.orderBy]: searchParams.sort }
       : undefined;
 
-    const issues = await prisma.issue.findMany({
-      where: {
-        title: {
-          contains: searchPhrase || undefined,
-        },
-        status: validatedStatus,
-        priority: validatePriorities,
+    const whereClause = {
+      title: {
+        contains: searchPhrase || undefined,
       },
-      orderBy: orderBy,
-      skip: (page - 1) * pageSize,
-      take: pageSize,
-    });
+      status: validatedStatus,
+      priority: validatePriorities,
+    };
 
-    const issueCount = await prisma.issue.count({
-      where: {
-        title: { contains: searchPhrase },
-        status: validatedStatus,
-        priority: validatePriorities,
-      },
-    });
+    const [issues, issueCount] = await prisma.$transaction([
+      prisma.issue.findMany({
+        where: whereClause,
+        orderBy: orderByClause,
+        skip: (page - 1) * pageSize,
+        take: pageSize,
+      }),
+      prisma.issue.count({ where: whereClause }),
+    ]);
 
     return (
       <Flex gap="5" direction="column">
