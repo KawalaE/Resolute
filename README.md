@@ -36,7 +36,7 @@ The Fullstack Issue Tracker App is built using `Next.js`, `React`, `TypeScript`,
 
 Click on below picture, to see the application demo!
 
-[![thumbnail](https://github.com/user-attachments/assets/09f4f255-2d38-460c-b9ce-32492dba0e2b)](https://www.youtube.com/watch?v=aG8YLScF17U)
+[![Thumbnail2](https://github.com/user-attachments/assets/496b6813-83e1-4dcb-8c0f-84f23a5440ac)](https://www.youtube.com/watch?v=aG8YLScF17U)
 ---
 
 
